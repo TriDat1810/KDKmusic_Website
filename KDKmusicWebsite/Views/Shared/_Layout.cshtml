@@ -1,39 +1,145 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <title>SolMusic | HTML Template</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="SolMusic HTML Template">
+    <meta name="keywords" content="music, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Favicon -->
+    <link href="~/Assets/User/img/favicon.ico" rel="shortcut icon" />
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="~/Assets/User/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Assets/User/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Assets/User/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/Assets/User/css/slicknav.min.css" />
+
+    <!-- Main Stylesheets -->
+    <link rel="stylesheet" href="~/Assets/User/css/style.css" />
+
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    <!-- Header section -->
+    <header class="header-section clearfix">
+        <a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)" class="site-logo">
+            <img src="~/Assets/User/img/home/KDKLOGO.png" alt="">
+        </a>
+        <div class="header-right">
+            <a href="#" class="hr-btn">Help</a>
+            <span>|</span>
+            <div class="user-panel">
+                <a href="@Url.Action("Login", "Home", null, Request.Url.Scheme)" class="login">Đăng nhập</a>
+                <a href="@Url.Action("Register", "Home", null, Request.Url.Scheme)" class="register">Tạo tài khoản</a>
+            </div>
+        </div>
+        <ul class="main-menu">
+            <li><a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)">Trang chủ</a></li>
+            <li>
+                <a href="#">Pages</a>
+                <ul class="sub-menu">
+                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)" ">Thể loại</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Artist", null, Request.Url.Scheme)">Nghệ sĩ</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)">Nhạc</a></li>
+                </ul>
+            </li>
+            <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
+        </ul>
+    </header>
+    <!-- Header section end -->
+    @RenderBody()
+    <!-- Footer section -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-7 order-lg-2">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="footer-widget">
+                                <h2>Về chúng tôi</h2>
+                                <ul>
+                                    <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="footer-widget">
+                                <h2>Sản phẩm</h2>
+                                <ul>
+                                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)">Thể loại</a></li>
+                                    <li><a href="@Url.Action("ShowDisplay", "Artist", null, Request.Url.Scheme)">Nghệ sĩ</a></li>
+                                    <li><a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)">Nhạc</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        @*<div class="col-sm-4">
+                                <div class="footer-widget">
+                                    <h2>Playlists</h2>
+                                    <ul>
+                                        <li><a href="#">Newsletter</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                        <li><a href="#">Press</a></li>
+                                        <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
+                                    </ul>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-5 order-lg-1">
+                    <img src="~/Assets/User/img/home/KDKLOGO.png" alt="">
+                    <div class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> Được chỉnh sửa | và phát triển <i class="fa fa-heart-o" aria-hidden="true"></i> bởi <a href="https://github.com/Kienpro10082002" target="_blank">KDK MUSIC</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.pinterest.com/"><i class="fa fa-pinterest"></i></a>
+                        <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                        <a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer section end -->
+    <!--====== Javascripts & Jquery ======-->
+    <script src="~/Assets/User/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Assets/User/js/bootstrap.min.js"></script>
+    <script src="~/Assets/User/js/jquery.slicknav.min.js"></script>
+    <script src="~/Assets/User/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/User/js/mixitup.min.js"></script>
+    <script src="~/Assets/User/js/main.js"></script>
+
+    <!-- Audio Players js -->
+    <script src="~/Assets/User/js/jquery.jplayer.min.js"></script>
+    <script src="~/Assets/User/js/wavesurfer.min.js"></script>
+
+    <!-- Audio Players Initialization -->
+    <script src="~/Assets/User/js/WaveSurferInit.js"></script>
+    <script src="~/Assets/User/js/jplayerInit.js"></script>
+
+    <!--User dev-->
+    <script src="~/Scripts/MyJS/Login.js"></script>
+
+    <!--Application JS on view-->
+    @*@RenderSection("scripts", required: false)*@
 </body>
 </html>

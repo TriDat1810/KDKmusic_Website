@@ -1,33 +1,48 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Trang chủ";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
-
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+<!-- Hero section -->
+<section class="hero-section">
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hs-text">
+                            <h2><span>Âm nhạc</span> cho mọi người.</h2>
+                            <p>Trang web của chúng tôi sẽ mang lại cho các bạn cảm giác thư giãn sau những giờ làm việc căng thẳng. Hãy click vào để thưởng thức</p>
+                            <a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)" class="site-btn">Xem nhạc</a>
+                            @*<a href="#" class="site-btn sb-c2">Start free trial</a>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hr-img">
+                            <img src="~/Assets/User/img/hero-bg.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hs-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hs-text">
+                            <h2><span>Âm nhạc</span> cho mọi người.</h2>
+                            <p>Trang web của chúng tôi sẽ mang lại cho các bạn cảm giác thư giãn sau những giờ làm việc căng thẳng. Hãy click vào để thưởng thức</p>
+                            <a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)" class="site-btn">Xem nhạc</a>
+                            @*<a href="#" class="site-btn sb-c2">Start free trial</a>*@
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hr-img">
+                            <img src="~/Assets/User/img/hero-bg.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</main>
+</section>
+<!-- Hero section end -->
