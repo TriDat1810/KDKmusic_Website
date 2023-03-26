@@ -1,0 +1,13 @@
+﻿@model KDKmusicWebsite.Models.User
+@if (Session["User"] != null)
+{
+    <p> <a href="@Url.Action("Logoff", "User", null, Request.Url.Scheme)">Đăng xuất</a></p>
+    <a href="#" class="user">@Session["User_name"]</a>
+}
+else
+{
+    <a href="@Url.Action("Login", "User", null, Request.Url.Scheme)" class="login">Đăng nhập</a>
+    <a href="@Url.Action("Register", "User", null, Request.Url.Scheme)" class="register">Tạo tài khoản mới</a>
+}
+
+
