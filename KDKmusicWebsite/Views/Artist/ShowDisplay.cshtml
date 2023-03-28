@@ -1,0 +1,75 @@
+﻿@model IEnumerable<KDKmusicWebsite.Models.Artist>
+
+@{
+    ViewBag.Title = "ShowDisplay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    main {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    @@media(max-width: 768px) {
+        main {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media(max-width: 480px) {
+        main {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+
+    .contentArtist {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    h1 {
+        background-color: #333;
+        color: #fff;
+        margin-top: 3px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+        .btn:hover {
+            background-color: #555;
+        }
+</style>
+
+<main>
+    @foreach (var item in Model)
+    {
+        <div class="contentArtist">
+            <img src="~/Assets/User/img/premium/1.jpg" />
+            <h4>@item.Artist_Name</h4>
+            <a href="@Url.Action("Details", "Artist", new { id = item.Artist_Id })" class="btn">Xem chi tiết</a>
+            <a href="#" class="btn">Xem Nhạc</a>
+        </div>
+    }
+</main>

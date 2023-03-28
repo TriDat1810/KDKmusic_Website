@@ -22,13 +22,10 @@
     <!-- Main Stylesheets -->
     <link rel="stylesheet" href="~/Assets/User/css/style.css" />
     <!-- My StyleSheets-->
-
-
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <!--Admin CSS-->
     <!-- Custom fonts for this template-->
     <link href="~/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,17 +50,21 @@
             <a href="#" class="hr-btn">Help</a>
             <span>|</span>
             <div class="user-panel">
-                @Html.Action("LoginPartial", "User", null)
+                @*@Html.Action("LoginPartial", "User", null)*@
             </div>
         </div>
         <ul class="main-menu">
-            <li><a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)">Trang chủ</a></li>
+            <li><a href="@Url.Action("AdminIndex", "Admin_Home", null, Request.Url.Scheme)">Trang chủ</a></li>
             <li>
                 <a href="#">Pages</a>
                 <ul class="sub-menu">
-                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)">Thể loại</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "Artist", null, Request.Url.Scheme)">Nghệ sĩ</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)">Nhạc</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Admin_Manager", null, Request.Url.Scheme)">Quản lý tài khoản quản trị</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "User_Manager", null, Request.Url.Scheme)">Quản lý tài khoản người dùng</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Country_Manager", null, Request.Url.Scheme)">Quản lý Quốc gia</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Genre_Manager", null, Request.Url.Scheme)">Quản lý thể loại</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Artist_Manager", null, Request.Url.Scheme)">Quản lý nghệ sĩ</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Music_Manager", null, Request.Url.Scheme)">Quản lý âm nhạc</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Interaction_Manager", null, Request.Url.Scheme)">Xem lượng tương tác</a></li>
                 </ul>
             </li>
             <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
@@ -89,9 +90,9 @@
                             <div class="footer-widget">
                                 <h2>Sản phẩm</h2>
                                 <ul>
-                                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)">Thể loại</a></li>
-                                    <li><a href="@Url.Action("ShowDisplay", "Artist", null, Request.Url.Scheme)">Nghệ sĩ</a></li>
-                                    <li><a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)">Nhạc</a></li>
+                                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)">Thể loại (bên phía người dùng)</a></li>
+                                    <li><a href="@Url.Action("ShowDisplay", "Artist", null, Request.Url.Scheme)">Nghệ sĩ (bên phía người dùng)</a></li>
+                                    <li><a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)">Nhạc (bên phía người dùng)</a></li>
                                 </ul>
                             </div>
                         </div>
