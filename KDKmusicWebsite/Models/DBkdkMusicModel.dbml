@@ -1,30 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="KDKMusic" Class="DBkdkMusicModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dbo.Admin" Member="Admins">
-    <Type Name="Admin">
-      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="User_name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="E_mail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Albums" Member="Albums">
-    <Type Name="Album">
-      <Column Name="Album_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Album_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Artist_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Album_Song" Member="Songs" ThisKey="Album_Id" OtherKey="Album_Id" Type="Song" />
-      <Association Name="Artist_Album" Member="Artist" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Artist" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
   <Table Name="dbo.Artist" Member="Artists">
     <Type Name="Artist">
       <Column Name="Artist_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Country_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Artist_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Artist_Image" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Association Name="Artist_Album" Member="Albums" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Album" />
       <Association Name="Artist_Song" Member="Songs" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Song" />
+      <Association Name="Artist_Album" Member="Albums" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Album" />
       <Association Name="Country_Artist" Member="Country" ThisKey="Country_Id" OtherKey="Country_Id" Type="Country" IsForeignKey="true" />
     </Type>
   </Table>
@@ -82,12 +64,12 @@
       <Column Name="Song_Data" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Lyrics" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Create_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Song_Image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Song_Image" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Association Name="Song_Interaction" Member="Interactions" ThisKey="Song_Id" OtherKey="Song_Id" Type="Interaction" />
       <Association Name="Song_Playlist_Song" Member="Playlist_Songs" ThisKey="Song_Id" OtherKey="Song_Id" Type="Playlist_Song" />
-      <Association Name="Album_Song" Member="Album" ThisKey="Album_Id" OtherKey="Album_Id" Type="Album" IsForeignKey="true" />
       <Association Name="Artist_Song" Member="Artist" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Artist" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Music_Genre_Song" Member="Music_Genre" ThisKey="Genre_Id" OtherKey="Genre_Id" Type="Music_Genre" IsForeignKey="true" />
+      <Association Name="Album_Song" Member="Album" ThisKey="Album_Id" OtherKey="Album_Id" Type="Album" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[User]" Member="Users">
@@ -98,6 +80,25 @@
       <Column Name="E_mail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="User_Interaction" Member="Interactions" ThisKey="User_Id" OtherKey="User_Id" Type="Interaction" />
       <Association Name="User_Playlist" Member="Playlists" ThisKey="User_Id" OtherKey="User_Id" Type="Playlist" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Admin" Member="Admins">
+    <Type Name="Admin">
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_name" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="E_mail" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="is_Admin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Albums" Member="Albums">
+    <Type Name="Album">
+      <Column Name="Album_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Album_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Artist_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Album_Song" Member="Songs" ThisKey="Album_Id" OtherKey="Album_Id" Type="Song" />
+      <Association Name="Artist_Album" Member="Artist" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Artist" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
 </Database>

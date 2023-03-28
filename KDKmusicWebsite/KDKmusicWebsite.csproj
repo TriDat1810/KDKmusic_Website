@@ -46,10 +46,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.2.1.0\lib\net472\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Asio, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Asio.2.1.0\lib\netstandard2.0\NAudio.Asio.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Core.2.1.0\lib\netstandard2.0\NAudio.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Lame, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Lame.2.0.1\lib\netstandard2.0\NAudio.Lame.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Midi, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Midi.2.1.0\lib\netstandard2.0\NAudio.Midi.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.Wasapi, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.Wasapi.2.1.0\lib\netstandard2.0\NAudio.Wasapi.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WinForms, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.WinForms.2.1.0\lib\net472\NAudio.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio.WinMM, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e279aa5131008a41, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.WinMM.2.1.0\lib\netstandard2.0\NAudio.WinMM.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.7.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,6 +155,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MusicController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1823,15 +1857,6 @@
     <Content Include="Assets\User\css\slicknav.min.css" />
     <Content Include="Assets\User\css\style.css" />
     <Content Include="Assets\User\icon-fonts\fontawesome-webfont.svg" />
-    <Content Include="Assets\User\img\artist.jpg" />
-    <Content Include="Assets\User\img\blog\3.jpg" />
-    <Content Include="Assets\User\img\blog\Charlieputh.jpg" />
-    <Content Include="Assets\User\img\blog\Newjeans.jpg" />
-    <Content Include="Assets\User\img\concept\1.jpg" />
-    <Content Include="Assets\User\img\concept\2.jpg" />
-    <Content Include="Assets\User\img\concept\3.jpg" />
-    <Content Include="Assets\User\img\concept\4.jpg" />
-    <Content Include="Assets\User\img\favicon.ico" />
     <Content Include="Assets\User\img\hero-bg.png" />
     <Content Include="Assets\User\img\home\KDKLOGO.png" />
     <Content Include="Assets\User\img\how-to-bg.jpg" />
@@ -1846,35 +1871,10 @@
     <Content Include="Assets\User\img\icons\play.png" />
     <Content Include="Assets\User\img\icons\pointer.png" />
     <Content Include="Assets\User\img\icons\smartphone.png" />
-    <Content Include="Assets\User\img\player-bg.jpg" />
-    <Content Include="Assets\User\img\playlist\1.jpg" />
-    <Content Include="Assets\User\img\playlist\10.jpg" />
-    <Content Include="Assets\User\img\playlist\11.jpg" />
-    <Content Include="Assets\User\img\playlist\12.jpg" />
-    <Content Include="Assets\User\img\playlist\13.jpg" />
-    <Content Include="Assets\User\img\playlist\14.jpg" />
-    <Content Include="Assets\User\img\playlist\15.jpg" />
-    <Content Include="Assets\User\img\playlist\2.jpg" />
-    <Content Include="Assets\User\img\playlist\3.jpg" />
-    <Content Include="Assets\User\img\playlist\4.jpg" />
-    <Content Include="Assets\User\img\playlist\5.jpg" />
-    <Content Include="Assets\User\img\playlist\6.jpg" />
-    <Content Include="Assets\User\img\playlist\7.jpg" />
-    <Content Include="Assets\User\img\playlist\8.jpg" />
-    <Content Include="Assets\User\img\playlist\9.jpg" />
     <Content Include="Assets\User\img\premium\1.jpg" />
     <Content Include="Assets\User\img\premium\2.jpg" />
     <Content Include="Assets\User\img\premium\3.jpg" />
     <Content Include="Assets\User\img\premium\4.jpg" />
-    <Content Include="Assets\User\img\songs\1.jpg" />
-    <Content Include="Assets\User\img\songs\2.jpg" />
-    <Content Include="Assets\User\img\songs\3.jpg" />
-    <Content Include="Assets\User\img\songs\4.jpg" />
-    <Content Include="Assets\User\img\songs\5.jpg" />
-    <Content Include="Assets\User\img\songs\6.jpg" />
-    <Content Include="Assets\User\img\songs\7.jpg" />
-    <Content Include="Assets\User\img\songs\8.jpg" />
-    <Content Include="Assets\User\img\wave-thumb.jpg" />
     <Content Include="Assets\User\js\bootstrap.min.js" />
     <Content Include="Assets\User\js\jplayerInit.js" />
     <Content Include="Assets\User\js\jquery-3.2.1.min.js" />
@@ -2120,6 +2120,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\LoginPartial.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Music\ShowDisplay.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2188,7 +2190,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets'))" />
   </Target>
+  <Import Project="..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets" Condition="Exists('..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

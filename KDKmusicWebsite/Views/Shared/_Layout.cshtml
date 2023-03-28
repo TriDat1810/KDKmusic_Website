@@ -21,6 +21,7 @@
 
     <!-- Main Stylesheets -->
     <link rel="stylesheet" href="~/Assets/User/css/style.css" />
+    <!-- My StyleSheets-->
 
 
     <!--[if lt IE 9]>
@@ -52,7 +53,7 @@
             <a href="#" class="hr-btn">Help</a>
             <span>|</span>
             <div class="user-panel">
-                @Html.Partial("LoginPartial")
+                @Html.Action("LoginPartial", "User", null)
             </div>
         </div>
         <ul class="main-menu">
@@ -60,7 +61,7 @@
             <li>
                 <a href="#">Pages</a>
                 <ul class="sub-menu">
-                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)" ">Thể loại</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)">Thể loại</a></li>
                     <li><a href="@Url.Action("ShowDisplay", "Artist", null, Request.Url.Scheme)">Nghệ sĩ</a></li>
                     <li><a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)">Nhạc</a></li>
                 </ul>

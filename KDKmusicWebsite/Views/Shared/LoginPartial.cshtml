@@ -1,4 +1,5 @@
-﻿@model KDKmusicWebsite.Models.User
+﻿@model IEnumerable<KDKmusicWebsite.Models.User>
+
 @if (Session["User"] != null)
 {
     <p> <a href="@Url.Action("Logoff", "User", null, Request.Url.Scheme)">Đăng xuất</a></p>

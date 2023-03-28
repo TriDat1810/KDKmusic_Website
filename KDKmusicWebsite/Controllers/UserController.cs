@@ -117,5 +117,10 @@ namespace KDKmusicWebsite.Controllers
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult LoginPartial()
+        {
+            return PartialView("LoginPartial");
+        }
     }
 }
