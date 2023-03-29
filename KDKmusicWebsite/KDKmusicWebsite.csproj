@@ -160,6 +160,7 @@
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MusicController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2128,11 +2129,11 @@
     <Content Include="Views\Shared\LoginPartial.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Music\ShowDisplay.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Artist\ShowDisplay.cshtml" />
     <Content Include="Views\Artist\Details.cshtml" />
     <Content Include="Views\Genre\ShowDisplay.cshtml" />
     <Content Include="Views\Music\ShowDisplayByArtist.cshtml" />
+    <Content Include="Views\Search\SearchForSong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

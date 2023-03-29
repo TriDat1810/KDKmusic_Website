@@ -67,6 +67,15 @@
                 </ul>
             </li>
             <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
+            <li>
+                <a>
+                    @using (Html.BeginForm("SearchForSong", "Search"))
+                    {
+                        @Html.TextBox("name", null, new { placeholder = "Nhập từ khóa tìm kiếm" })
+                        <input type="submit" value="Tìm kiếm" />
+                    }
+                </a>
+            </li>
         </ul>
     </header>
     <!-- Header section end -->
@@ -95,17 +104,6 @@
                                 </ul>
                             </div>
                         </div>
-                        @*<div class="col-sm-4">
-                                <div class="footer-widget">
-                                    <h2>Playlists</h2>
-                                    <ul>
-                                        <li><a href="#">Newsletter</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                        <li><a href="#">Press</a></li>
-                                        <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
-                                    </ul>
-                                </div>
-                            </div>*@
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-5 order-lg-1">
