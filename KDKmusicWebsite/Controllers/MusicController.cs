@@ -15,10 +15,33 @@ namespace KDKmusicWebsite.Controllers
         DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
 
         // GET: Music
-        public ActionResult ShowDisplay()
+        public ActionResult ShowDisplay(int? Genre_id)
         {
-            var showlist = data.Songs.ToList();
-            return View(showlist);
+            if(Genre_id == null)
+            {
+                var showlist = data.Songs.ToList();
+                return View(showlist);
+            }
+            else
+            {
+                var showlist = data.Songs.Where(s => s.Genre_Id == Genre_id).ToList();
+                return View(showlist);
+            }
+        }
+
+        public ActionResult ShowDisplayByArtist(int? Artist_id)
+        {
+            if (Artist_id == null)
+            {
+                var showlist = data.Songs.ToList();
+                return View(showlist);
+            }
+            else if (Artist_id != null)
+            {
+                var showlist = data.Songs.Where(s => s.Artist_Id == Artist_id).ToList();
+                return View(showlist);
+            }
+            return null;
         }
 
         //Phát nhạc

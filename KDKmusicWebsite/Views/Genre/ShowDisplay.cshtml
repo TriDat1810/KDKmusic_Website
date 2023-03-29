@@ -1,0 +1,12 @@
+﻿@model IEnumerable<KDKmusicWebsite.Models.Music_Genre>
+
+@{
+    ViewBag.Title = "ShowDisplay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model) {
+    <div>
+        <a href="@Url.Action("ShowDisplay", "Music", new { Genre_id = item.Genre_Id })">@item.Genre_Name</a>
+    </div>
+}
