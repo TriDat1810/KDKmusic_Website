@@ -60,13 +60,9 @@ namespace KDKmusicWebsite.Models
     partial void InsertAlbum(Album instance);
     partial void UpdateAlbum(Album instance);
     partial void DeleteAlbum(Album instance);
-        #endregion
-
-        public DBkdkMusicModelDataContext() : base(global::System.Configuration.ConfigurationManager.ConnectionStrings["KDKMusicConnectionString"].ConnectionString, mappingSource)
-        {
-			OnCreated();
-        }
-        public DBkdkMusicModelDataContext(string connection) : 
+    #endregion
+		
+		public DBkdkMusicModelDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -83,8 +79,12 @@ namespace KDKmusicWebsite.Models
 		{
 			OnCreated();
 		}
-		
-		public DBkdkMusicModelDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+        public DBkdkMusicModelDataContext() :
+                base(global::System.Configuration.ConfigurationManager.ConnectionStrings["KDKMusicConnectionString"].ConnectionString, mappingSource)
+        {
+            OnCreated();
+        }
+        public DBkdkMusicModelDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Security.Cryptography;
 using System.Text;
 using KDKmusicWebsite.Models;
+using System.Configuration;
+using Facebook;
 
 namespace KDKmusicWebsite.Controllers
 {
@@ -13,16 +15,21 @@ namespace KDKmusicWebsite.Controllers
     {
         DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
         // GET: User
-        static string GetMd5Hash(MD5 md5Hash, string input)
+
+        //Mã hóa md5
+        private string mahoamd5(string input)
         {
-            // Convert the input string to a byte array and compute the hash.
-            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-            StringBuilder sBuilder = new StringBuilder();
-            for (int i = 0; i < data.Length; i++)
+            using (var md5 = MD5.Create())
             {
-                sBuilder.Append(data[i].ToString("x2"));
+                var dulieu = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+                var builder = new StringBuilder();
+
+                for (int i = 0; i < dulieu.Length; i++)
+                {
+                    builder.Append(dulieu[i].ToString("x2"));
+                }
+                return builder.ToString();
             }
-            return sBuilder.ToString();
         }
         [HttpGet]
         public ActionResult Register()
@@ -59,7 +66,8 @@ namespace KDKmusicWebsite.Controllers
             else
             {
                 user.User_name = taikhoan;
-                user.Password = matkhau;
+              //lưu mật khẩu dưới dạng md5
+                user.Password = mahoamd5(matkhau);
                 user.E_mail = email;
                 data.Users.InsertOnSubmit(user);
                 data.SubmitChanges();
@@ -84,7 +92,8 @@ namespace KDKmusicWebsite.Controllers
         public ActionResult Login(FormCollection collection)
         {
             var taikhoan = collection["TaiKhoan"];
-            var matkhau = collection["Matkhau"];
+            //gán matkhau (nhập) bằng md5 và check Password(md5) với matkhau 
+            var matkhau = mahoamd5(collection["Matkhau"]);
 
             if (String.IsNullOrEmpty(taikhoan))
             {
@@ -111,6 +120,79 @@ namespace KDKmusicWebsite.Controllers
                     ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng ";
             }
             return this.Login();
+        }
+        //Login bằng facebook
+        private Uri RedirectUri
+        {
+            get
+            {
+                var uriBuilder = new UriBuilder(Request.Url);
+                uriBuilder.Query = null;
+                uriBuilder.Fragment = null;
+                uriBuilder.Path = Url.Action("FacebookCallback");
+                return uriBuilder.Uri;
+            }
+        }
+        public long InsertForFacebook(User entity)
+        {
+            var user = data.Users.SingleOrDefault(n => n.User_name == entity.User_name);
+            if (user == null)
+            {
+                data.Users.InsertOnSubmit(entity);
+                data.SubmitChanges();
+                return entity.User_Id;
+            }
+            return user.User_Id;
+        }
+        public ActionResult LoginFacebook()
+        {
+            var fb = new FacebookClient();
+            var loginUrl = fb.GetLoginUrl(new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppId"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                response_type = "code",
+                scope = "email",
+            });
+            return Redirect(loginUrl.AbsoluteUri);
+        }
+        public ActionResult FacebookCallback(string code)
+        {
+            var fb = new FacebookClient();
+            dynamic result = fb.Post("oauth/access_token", new
+            {
+                client_id = ConfigurationManager.AppSettings["FbAppId"],
+                client_secret = ConfigurationManager.AppSettings["FbAppSecret"],
+                redirect_uri = RedirectUri.AbsoluteUri,
+                code = code
+            });
+
+            var accessToken = result.access_token;
+            if (!string.IsNullOrEmpty(accessToken))
+            {
+                fb.AccessToken = accessToken;
+                //lấy thông tin của người dùng
+                dynamic me = fb.Get("me?fields=first_name,middle_name,last_name,id,email");
+                string email = me.email;
+                string username = me.email;
+                string firstname = me.first_name;
+                string middlename = me.middle_name;
+                string lastname = me.last_name;
+
+                var user = new User();
+                user.User_name = email;
+                user.E_mail = email;
+                user.Password = email;
+                var insertResurt = InsertForFacebook(user);
+                if (insertResurt > 0)
+                {
+                    Session["User"] = user;
+                    Session["User_name"] = user.User_name;
+
+                }
+            }
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Logoff()
         {

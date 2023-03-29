@@ -9,7 +9,7 @@
 {
     <div class="container">
         <!-- Invalid Login -->
-        <h4 class="alert alert-primary alert-danger bg-dark">@ViewBag.ThongBao</h4>
+        @*<h4 class="alert alert-primary alert-danger bg-dark">@ViewBag.ThongBao</h4>*@
         @Html.ValidationSummary(true)
         <!-- Outer Row -->
         <div class="row justify-content-center">
@@ -31,30 +31,30 @@
                                             <input type="text" class="form-control form-control-user"
                                                    id="exampleInputEmail" aria-describedby="emailHelp"
                                                    placeholder="Nhập tài khoản" name="TaiKhoan">
-                                            @ViewData["Loi1"]
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                    id="exampleInputPassword" placeholder="Nhập mật khẩu" name="MatKhau">
-                                            @ViewData["Loi2"]
                                         </div>
-                                        @*<div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">
-                                                        Remember
-                                                        Me
-                                                    </label>
-                                                </div>
-                                            </div>*@
-                                        @*<a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)" class="btn btn-primary btn-user btn-block">
-                                                Đăng nhập
-                                            </a>*@
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng nhập" />
+                                        @*sửa*@<!-- Invalid Login -->
+                                        <div style="color:red; text-align:center;">@ViewBag.Thongbao</div>
+                                        <div style="color:red;">@ViewData["Loi1"]</div>
+                                        <div style="color:red;">@ViewData["Loi2"]</div>
+                                        <hr>
+                                        <a href="/User/LoginFacebook" class="btn btn-facebook btn-user btn-block" onclick="DevFeature_Alert()">
+                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        </a>
+                                        <a href="#" class="btn btn-google btn-user btn-block" onclick="DevFeature_Alert()">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                        <hr>
                                     </form>
-                                    <hr>
                                     <div class="text-center">
-                                        <a class="small" href="@Url.Action("Register", "User", null, Request.Url.Scheme)">Tạo tại tài khoản</a>
+                                        <a class="small" href="@Url.Action("Register", "User", null, Request.Url.Scheme)">Quên mật khẩu!</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="@Url.Action("Register", "User", null, Request.Url.Scheme)">Chưa có tài khoản? Tạo tài khoản!</a>
                                     </div>
                                 </div>
                             </div>
