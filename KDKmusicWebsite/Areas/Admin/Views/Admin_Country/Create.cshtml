@@ -1,0 +1,58 @@
+﻿@model KDKmusicWebsite.Models.Country
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    h4 {
+        text-align: center;
+    }
+
+    .btn {
+        background-color: blue;
+        color: white;
+    }
+
+    .backspace {
+        text-decoration: none;
+    }
+
+        .backspace :hover {
+            color: red;
+        }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>THÊM MỚI QUỐC GIA</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên quốc gia</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Country_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="backspace">
+    @Html.ActionLink("Back to List", "ShowDisplay")
+</div>
+
+
+@section Scripts {
+    <script src="~/Scripts/jqueryval.js"></script>
+}

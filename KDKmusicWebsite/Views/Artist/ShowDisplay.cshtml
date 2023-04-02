@@ -69,7 +69,7 @@
             <img src="~/Assets/User/img/premium/1.jpg" />
             <h4>@item.Artist_Name</h4>
             <a href="@Url.Action("Details", "Artist", new { id = item.Artist_Id })" class="btn">Xem chi tiết</a>
-            <a href="@Url.Action("ShowDisplayByArtist", "Music", new {Artist_id = item.Artist_Id})" class="btn">Xem Nhạc</a>
+            <a href="@Url.Action("ShowDisplayByArtist", "Music", new {Artist_id = item.Artist_Id})" class="btn btn-primary">Xem Nhạc</a>
         </div>
     }
 </main>

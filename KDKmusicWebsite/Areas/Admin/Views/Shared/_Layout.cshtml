@@ -7,8 +7,8 @@
     <meta name="keywords" content="music, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon -->
-    <link href="~/Assets/User/img/home/KDKLOGO.png" rel="shortcut icon" />
+    <!--LOGO-->
+    <link href="~/Assets/User/font/font.css" rel="stylesheet" />
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -43,14 +43,14 @@
 
     <!-- Header section -->
     <header class="header-section clearfix">
-        <a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)" class="site-logo">
-            <img src="~/Assets/User/img/home/KDKLOGO.png" alt="">
+        <a href="@Url.Action("AdminIndex", "Admin_Home", null, Request.Url.Scheme)">
+            <div class="header-logo">KDK Music</div>
         </a>
         <div class="header-right">
             <a href="#" class="hr-btn">Help</a>
             <span>|</span>
             <div class="user-panel">
-                @*@Html.Action("LoginPartial", "User", null)*@
+                @Html.Action("LoginPartial", "AdminLogin", null)
             </div>
         </div>
         <ul class="main-menu">
@@ -58,16 +58,15 @@
             <li>
                 <a href="#">Pages</a>
                 <ul class="sub-menu">
-                    <li><a href="@Url.Action("ShowDisplay", "Admin_Manager", null, Request.Url.Scheme)">Quản lý tài khoản quản trị</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "User_Manager", null, Request.Url.Scheme)">Quản lý tài khoản người dùng</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "Country_Manager", null, Request.Url.Scheme)">Quản lý Quốc gia</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "Genre_Manager", null, Request.Url.Scheme)">Quản lý thể loại</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "Artist_Manager", null, Request.Url.Scheme)">Quản lý nghệ sĩ</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "Music_Manager", null, Request.Url.Scheme)">Quản lý âm nhạc</a></li>
-                    <li><a href="@Url.Action("ShowDisplay", "Interaction_Manager", null, Request.Url.Scheme)">Xem lượng tương tác</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Admin_Manager", null, Request.Url.Scheme)">Quản trị</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "User_Manager", null, Request.Url.Scheme)">Người dùng</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Admin_Country", null, Request.Url.Scheme)">Quốc gia</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Admin_Genre", null, Request.Url.Scheme)">Thể loại</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Admin_Artist", null, Request.Url.Scheme)">Nghệ sĩ</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Admin_Music", null, Request.Url.Scheme)">Âm nhạc</a></li>
+                    <li><a href="@Url.Action("ShowDisplay", "Interaction_Manager", null, Request.Url.Scheme)">Xem tương tác người dùng</a></li>
                 </ul>
             </li>
-            <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
         </ul>
     </header>
     <!-- Header section end -->
@@ -76,39 +75,6 @@
     <footer class="footer-section">
         <div class="container">
             <div class="row">
-                <div class="col-xl-6 col-lg-7 order-lg-2">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="footer-widget">
-                                <h2>Về chúng tôi</h2>
-                                <ul>
-                                    <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="footer-widget">
-                                <h2>Sản phẩm</h2>
-                                <ul>
-                                    <li><a href="@Url.Action("ShowDisplay", "Genre", null, Request.Url.Scheme)">Thể loại (bên phía người dùng)</a></li>
-                                    <li><a href="@Url.Action("ShowDisplay", "Artist", null, Request.Url.Scheme)">Nghệ sĩ (bên phía người dùng)</a></li>
-                                    <li><a href="@Url.Action("ShowDisplay", "Music", null, Request.Url.Scheme)">Nhạc (bên phía người dùng)</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        @*<div class="col-sm-4">
-                                <div class="footer-widget">
-                                    <h2>Playlists</h2>
-                                    <ul>
-                                        <li><a href="#">Newsletter</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                        <li><a href="#">Press</a></li>
-                                        <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
-                                    </ul>
-                                </div>
-                            </div>*@
-                    </div>
-                </div>
                 <div class="col-xl-6 col-lg-5 order-lg-1">
                     <img src="~/Assets/User/img/home/KDKLOGO.png" alt="">
                     <div class="copyright">
@@ -160,6 +126,6 @@
     <script src="~/Assets/Admin/s/sb-admin-2.min.js"></script>
 
     <!--Application JS on view-->
-    @*@RenderSection("scripts", required: false)*@
+    @RenderSection("scripts", required: false)
 </body>
 </html>

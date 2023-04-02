@@ -226,12 +226,6 @@ Header section
 	background: #08192d;
 }
 
-.site-logo {
-	display: inline-block;
-	padding: 0;
-	padding: 44px 15px;
-}
-
 .header-right {
 	float: right;
 	padding: 44px 0;

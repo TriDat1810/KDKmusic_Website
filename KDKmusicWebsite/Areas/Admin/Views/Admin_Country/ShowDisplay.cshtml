@@ -1,0 +1,140 @@
+﻿@using KDKmusicWebsite.Models
+@using PagedList.Mvc;
+@model  PagedList.PagedList<KDKmusicWebsite.Models.Country>
+
+@{
+    ViewBag.Title = "ShowDisplay";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table.table {
+        border: 1px solid black;
+        color: black;
+    }
+
+        table.table th {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        table.table td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+    a.btn {
+        margin: auto auto 5px 5px;
+        text-decoration: none;
+        background-color: blue;
+        color: white;
+    }
+
+        a.btn :hover {
+            cursor: pointer;
+        }
+
+    .anchor-component {
+        background-color: black;
+    }
+
+    /*CSS form PAGINATION*/
+    /* Phân trang */
+    .pager {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+        .pager ul {
+            display: inline-block;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pager li {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+            .pager li a {
+                display: inline-block;
+                padding: 5px 10px;
+                border: 1px solid #ccc;
+                color: #333;
+                text-decoration: none;
+            }
+
+            .pager li.active a {
+                background-color: #337ab7;
+                color: #fff;
+                border-color: #337ab7;
+            }
+
+            .pager li a:hover {
+                background-color: #337ab7;
+                color: #fff;
+                border-color: #337ab7;
+            }
+</style>
+
+<main>
+    <center style="margin: 5px auto"><h2 style="font-style: inherit;">DANH SÁCH QUỐC GIA</h2></center>
+
+    <a href="@Url.Action("Create")" class="btn">Thêm mới</a>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Tên quốc gia")
+            </th>
+            <th>@Html.DisplayName("Mã quốc gia")</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(ModelItem => item.Country_Id)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Country_Id })" class="btn" style="background-color: darkgreen;">Sửa</a>
+                    |||
+                    <a href="@Url.Action("Delete", new { id = item.Country_Id })" class="btn" style="background-color: darkred;">Xóa</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        <div class="pager">
+            @if (Model.PageCount > 1)
+            {
+                <ul>
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber - 1 })">Previous</a></li>
+                    }
+
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="@(i == Model.PageNumber ? "active" : "")"><a href="@Url.Action("ShowDisplay", new { page = i })">@i</a></li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber + 1 })">Next</a></li>
+                    }
+                </ul>
+            }
+        </div>
+
+
+    </div>
+
+</main>

@@ -17,7 +17,7 @@ namespace KDKmusicWebsite.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "AdminIndex", id = UrlParameter.Optional }
+                new { action = "Admin_Login", id = UrlParameter.Optional }
             );
         }
     }

@@ -7,8 +7,8 @@
     <meta name="keywords" content="music, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon -->
-    <link href="~/Assets/User/img/home/KDKLOGO.png" rel="shortcut icon" />
+    <!--LOGO-->
+    <link href="~/Assets/User/font/font.css" rel="stylesheet" />
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -22,13 +22,10 @@
     <!-- Main Stylesheets -->
     <link rel="stylesheet" href="~/Assets/User/css/style.css" />
     <!-- My StyleSheets-->
-
-
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <!--Admin CSS-->
     <!-- Custom fonts for this template-->
     <link href="~/Assets/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -46,8 +43,8 @@
 
     <!-- Header section -->
     <header class="header-section clearfix">
-        <a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)" class="site-logo">
-            <img src="~/Assets/User/img/home/KDKLOGO.png" alt="">
+        <a href="@Url.Action("Index", "Home", null, Request.Url.Scheme)">
+            <div class="header-logo">KDK Music</div>
         </a>
         <div class="header-right">
             <a href="#" class="hr-btn">Help</a>
@@ -68,11 +65,11 @@
             </li>
             <li><a href="@Url.Action("Contact", "Home", null, Request.Url.Scheme)">Liên hệ</a></li>
             <li>
-                <a>
+                <a class="search-container">
                     @using (Html.BeginForm("SearchForSong", "Search"))
                     {
                         @Html.TextBox("name", null, new { placeholder = "Nhập từ khóa tìm kiếm" })
-                        <input type="submit" value="Tìm kiếm" />
+                        <input id="search" type="submit" value="Tìm kiếm" />
                     }
                 </a>
             </li>

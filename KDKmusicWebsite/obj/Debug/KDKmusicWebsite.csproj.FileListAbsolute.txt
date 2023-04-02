@@ -95,3 +95,9 @@ D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\NAudio.xml
 D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\NAudio.Lame.pdb
 D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\System.Security.AccessControl.xml
 D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\System.Security.Principal.Windows.xml
+D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\PagedList.dll
+D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\PagedList.Mvc.dll
+D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\PagedList.xml
+D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\PagedList.Mvc.xml
+D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\Facebook.dll
+D:\LAPTRINHWEB\KDKmusicWebsite\KDKmusicWebsite\KDKmusicWebsite\bin\Facebook.xml

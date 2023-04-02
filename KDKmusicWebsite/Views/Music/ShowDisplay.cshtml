@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<KDKmusicWebsite.Models.Song>
-
+@using KDKmusicWebsite.Models
 @{
     ViewBag.Title = "ShowDisplay";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -50,6 +50,20 @@
                         <audio controls id="music" preload="metadata">
                             <source src="@Url.Action("Play", "Music", new {id = item.Song_Id})" type="audio/mpeg">
                         </audio>
+
+                        <!-- Kiểm tra xem người dùng đã đăng nhập hay chưa -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <!-- Nếu đã đăng nhập, hiển thị nút tải -->
+                            <a href="@Url.Action("DownloadSong", "Songs", new { id = item.Song_Id })" class="btn btn-primary">Tải bài hát</a>
+
+                        }
+                        else
+                        {
+                            <!-- Nếu chưa đăng nhập, hiển thị nút đăng nhập -->
+                            <a href="@Url.Action("Login", "User", new { returnUrl = Url.Action("DownloadSong", "Songs", new {id = item.Song_Id}) })" class="btn btn-primary">Đăng nhập để tải bài hát</a>
+                        }
+
                     </div>
                 </div>
                 <!-- Card -->
