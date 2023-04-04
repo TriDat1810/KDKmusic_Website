@@ -1,0 +1,88 @@
+﻿@using KDKmusicWebsite.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<KDKmusicWebsite.Models.Artist>
+
+@{
+    ViewBag.Title = "ShowDisplay";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Thông tin nghệ sĩ</h2></center>
+
+<div class="container text-center">
+    <p>
+        @Html.ActionLink("Tạo mới", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Tên nghệ sĩ")
+            </th>
+            <th>
+                @Html.DisplayName("Mã")
+            </th>
+            <th>
+                @Html.DisplayName("Quốc gia")
+            </th>
+            <th>
+                @Html.DisplayName("Thông tin")
+            </th>
+            <th>
+                @Html.DisplayName("Hình ảnh")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country.Country_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist_Info)
+                </td>
+                <td>
+                    <img src="@Url.Action("DisplayImage", "Admin_Artist", new { imageId = item.Artist_Id })" />
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Artist_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Artist_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Artist_Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        <div class="pager">
+            @if (Model.PageCount > 1)
+            {
+                <ul>
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber - 1 })">Previous</a></li>
+                    }
+
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="@(i == Model.PageNumber ? "active" : "")"><a href="@Url.Action("ShowDisplay", new { page = i })">@i</a></li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber + 1 })">Next</a></li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

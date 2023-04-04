@@ -1,135 +1,135 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14, 8.875" name="DBkdkMusicModel">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14, 11.75" name="DBkdkMusicModel">
   <DataContextMoniker Name="/DBkdkMusicModelDataContext" />
   <nestedChildShapes>
-    <classShape Id="d4b6ad38-13fa-4323-9496-a63de2157720" absoluteBounds="3.5, 3.875, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Artist" />
-      <nestedChildShapes>
-        <elementListCompartment Id="a0942676-9176-4035-8d3b-4fd315082585" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="a1d70be8-1ff1-4287-98af-3e4b93b69526" absoluteBounds="0.75, 4, 2, 1.1939925130208335">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Country" />
-      <nestedChildShapes>
-        <elementListCompartment Id="da1b8125-1330-4edf-bb9b-c6ef264182ef" absoluteBounds="0.765, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="440411e2-540a-448c-85ba-f06fd5d7273f" absoluteBounds="11.75, 0.75, 2, 1.7708968098958331">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Interaction" />
-      <nestedChildShapes>
-        <elementListCompartment Id="87a25c56-4d50-4d0f-83d5-30006edd45aa" absoluteBounds="11.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="379d34d5-0b5e-4cf1-a7bb-9dbd6b927fe9" absoluteBounds="6.25, 1, 2, 1.1939925130208338">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Music_Genre" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6a6442a8-1957-4cda-a5db-673bf37095a4" absoluteBounds="6.265, 1.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="a35f5848-01a6-40d3-846a-63d048ac88ed" absoluteBounds="9, 0.875, 2, 1.5785953776041663">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Playlist" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1f82c55d-e40d-4243-9803-3fb6589d988e" absoluteBounds="9.015, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="c12fc857-4ef1-4bbb-bcc0-c39822019145" absoluteBounds="11.75, 4, 2, 1.1939925130208335">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Playlist_Song" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ba931b69-6073-400f-804a-74741082b22b" absoluteBounds="11.765, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="3fc390cf-56d5-41b7-9951-d7ce6d97784d" absoluteBounds="9, 3.25, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Song" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1823ff8b-4610-4635-a543-8e06d9602c43" absoluteBounds="9.015, 3.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="b1bd8f2f-23e5-4c81-8734-3d8990b0a574" absoluteBounds="9, 7, 2, 1.5785953776041675">
-      <DataClassMoniker Name="/DBkdkMusicModelDataContext/User" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9f9a3bca-638d-466d-a3a1-04e23e2b4818" absoluteBounds="9.015, 7.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="b0efa3d3-c264-4648-99ae-162ddb93df8b" absoluteBounds="0.75, 6.375, 2, 1.9631982421875014">
+    <classShape Id="4bc77fdf-0ea2-4c40-9767-d51bcee5bdf1" absoluteBounds="0.75, 6.5, 2, 1.9631982421875005">
       <DataClassMoniker Name="/DBkdkMusicModelDataContext/Admin" />
       <nestedChildShapes>
-        <elementListCompartment Id="1b79a22d-b157-43b6-bcb8-b9751e703d43" absoluteBounds="0.765, 6.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="30ba1a28-e244-4b7b-bf4a-63363b1a6695" absoluteBounds="0.765, 6.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="46dc44e7-6189-4393-8aec-5d0ca41a4521" absoluteBounds="6.25, 4, 2, 1.3862939453125005">
+    <classShape Id="c34062b4-a6e5-41e6-8708-2870b0b69846" absoluteBounds="6.25, 4, 2, 1.3862939453125005">
       <DataClassMoniker Name="/DBkdkMusicModelDataContext/Album" />
       <nestedChildShapes>
-        <elementListCompartment Id="c772abe0-518e-4c27-a6c4-ad613004ea67" absoluteBounds="6.265, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2839ce2a-7643-449b-8ed7-b1c77722eb9b" absoluteBounds="6.265, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 4.59699625651042); (3.5 : 4.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Country/Country_Artist" />
-      <nodes>
-        <classShapeMoniker Id="a1d70be8-1ff1-4287-98af-3e4b93b69526" />
-        <classShapeMoniker Id="d4b6ad38-13fa-4323-9496-a63de2157720" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11 : 2.45238007346755); (11.375 : 2.82738007346755); (11.375 : 4.59699625651042); (11.75 : 4.59699625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Playlist/Playlist_Playlist_Song" />
-      <nodes>
-        <classShapeMoniker Id="a35f5848-01a6-40d3-846a-63d048ac88ed" />
-        <classShapeMoniker Id="c12fc857-4ef1-4bbb-bcc0-c39822019145" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11 : 3.31153746153846); (11.3160744349011 : 2.99546302663734 : JumpStart); (11.4964255650989 : 2.81511189643958 : JumpEnd); (11.5625 : 2.74903746153846); (11.5625 : 1.63544840494792); (11.75 : 1.63544840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Song/Song_Interaction" />
-      <nodes>
-        <classShapeMoniker Id="3fc390cf-56d5-41b7-9951-d7ce6d97784d" />
-        <classShapeMoniker Id="440411e2-540a-448c-85ba-f06fd5d7273f" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11 : 4.23599812825521); (11.2916666666667 : 4.23599812825521 : JumpStart); (11.5208333333333 : 4.23599812825521 : JumpEnd); (11.75 : 4.23599812825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Song/Song_Playlist_Song" />
-      <nodes>
-        <classShapeMoniker Id="3fc390cf-56d5-41b7-9951-d7ce6d97784d" />
-        <classShapeMoniker Id="c12fc857-4ef1-4bbb-bcc0-c39822019145" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 3.90625); (8.54166666666667 : 3.90625 : JumpStart); (8.70833333333333 : 3.90625 : JumpEnd); (8.72916666666667 : 3.90625 : JumpStart); (8.89583333333333 : 3.90625 : JumpEnd); (9 : 3.90625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Artist/Artist_Song" />
-      <nodes>
-        <classShapeMoniker Id="d4b6ad38-13fa-4323-9496-a63de2157720" />
-        <classShapeMoniker Id="3fc390cf-56d5-41b7-9951-d7ce6d97784d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 2.19399251302083); (8.625 : 2.56899251302083); (8.625 : 4.97557898567708); (8.72916666666667 : 4.97557898567708 : JumpStart); (8.89583333333333 : 4.97557898567708 : JumpEnd); (9 : 4.97557898567708)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Music_Genre/Music_Genre_Song" />
-      <nodes>
-        <classShapeMoniker Id="379d34d5-0b5e-4cf1-a7bb-9dbd6b927fe9" />
-        <classShapeMoniker Id="3fc390cf-56d5-41b7-9951-d7ce6d97784d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(11 : 7.06192851096755); (11.4375 : 6.62442851096755); (11.4375 : 2.10942460742187); (11.4791666666667 : 2.10942460742187 : JumpStart); (11.6458333333333 : 2.10942460742187 : JumpEnd); (11.75 : 2.10942460742187)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/User/User_Interaction" />
-      <nodes>
-        <classShapeMoniker Id="b1bd8f2f-23e5-4c81-8734-3d8990b0a574" />
-        <classShapeMoniker Id="440411e2-540a-448c-85ba-f06fd5d7273f" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.06192851096755 : 7); (8.8125 : 6.75057148903245); (8.8125 : 2.64109537760417); (9 : 2.45359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/User/User_Playlist" />
-      <nodes>
-        <classShapeMoniker Id="b1bd8f2f-23e5-4c81-8734-3d8990b0a574" />
-        <classShapeMoniker Id="a35f5848-01a6-40d3-846a-63d048ac88ed" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 4.42528949283854); (8.54166666666667 : 4.42528949283854 : JumpStart); (8.70833333333333 : 4.42528949283854 : JumpEnd); (8.72916666666667 : 4.42528949283854 : JumpStart); (8.89583333333333 : 4.42528949283854 : JumpEnd); (9 : 4.42528949283854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Album/Album_Song" />
-      <nodes>
-        <classShapeMoniker Id="46dc44e7-6189-4393-8aec-5d0ca41a4521" />
-        <classShapeMoniker Id="3fc390cf-56d5-41b7-9951-d7ce6d97784d" />
-      </nodes>
-    </associationConnector>
+    <classShape Id="57cb612e-e4d5-4722-9eb4-ff22e9714aa7" absoluteBounds="3.5, 3.75, 2, 1.7708968098958326">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Artist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d46159c-64d7-42bc-9a3c-94828c174252" absoluteBounds="3.515, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cf6d7bf5-8f0f-44a8-9663-d2ada4d424ae" absoluteBounds="0.75, 4, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Country" />
+      <nestedChildShapes>
+        <elementListCompartment Id="12b28725-feb3-41a1-9481-1c350b00580d" absoluteBounds="0.765, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7f857ea2-8dcd-4aa9-99fa-469666291e69" absoluteBounds="11.75, 0.75, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Interaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d0217486-48c0-4868-ac6b-1d36bd9d0fb4" absoluteBounds="11.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="98e86246-24e4-4587-8732-24e2cffde82f" absoluteBounds="6.25, 8, 2, 1.1939925130208326">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Music_Genre" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cf52afd7-36ef-4cd1-af4b-ea474124f36a" absoluteBounds="6.265, 8.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="38fba086-69fe-4bd0-8c26-b0809d03ca96" absoluteBounds="9, 9.875, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Playlist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dda4b108-1d57-4679-b7a8-bca91d1d8641" absoluteBounds="9.015, 10.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5a06a4b1-6d33-4ac5-9168-6ee072025e12" absoluteBounds="11.75, 4, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Playlist_Song" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ef9cd653-d472-4959-8570-29719ea3181e" absoluteBounds="11.765, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b5d4be6a-c687-4034-8859-9c359a73c733" absoluteBounds="9, 3.25, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/Song" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b0ffe316-5f7b-49c5-9315-b5fbb5cb178b" absoluteBounds="9.015, 3.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5bd45163-852f-48b1-8c92-292fb19e00cd" absoluteBounds="9, 7.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DBkdkMusicModelDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3dcc6813-857c-48fc-b743-1a9f2fec6a29" absoluteBounds="9.015, 7.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
     <associationConnector edgePoints="[(5.5 : 4.69314697265625); (6.25 : 4.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DBkdkMusicModelDataContext/Artist/Artist_Album" />
       <nodes>
-        <classShapeMoniker Id="d4b6ad38-13fa-4323-9496-a63de2157720" />
-        <classShapeMoniker Id="46dc44e7-6189-4393-8aec-5d0ca41a4521" />
+        <classShapeMoniker Id="57cb612e-e4d5-4722-9eb4-ff22e9714aa7" />
+        <classShapeMoniker Id="c34062b4-a6e5-41e6-8708-2870b0b69846" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.59699625651042); (3.5 : 4.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Country/Country_Artist" />
+      <nodes>
+        <classShapeMoniker Id="cf6d7bf5-8f0f-44a8-9663-d2ada4d424ae" />
+        <classShapeMoniker Id="57cb612e-e4d5-4722-9eb4-ff22e9714aa7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 10.6642976888021); (12.75 : 10.6642976888021); (12.75 : 5.19399251302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Playlist/Playlist_Playlist_Song" />
+      <nodes>
+        <classShapeMoniker Id="38fba086-69fe-4bd0-8c26-b0809d03ca96" />
+        <classShapeMoniker Id="5a06a4b1-6d33-4ac5-9168-6ee072025e12" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 3.25); (10 : 1.63544840494792); (11.75 : 1.63544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Song/Song_Interaction" />
+      <nodes>
+        <classShapeMoniker Id="b5d4be6a-c687-4034-8859-9c359a73c733" />
+        <classShapeMoniker Id="7f857ea2-8dcd-4aa9-99fa-469666291e69" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 4.59699625651042); (11.2916666666667 : 4.59699625651042 : JumpStart); (11.4583333333333 : 4.59699625651042 : JumpEnd); (11.75 : 4.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Song/Song_Playlist_Song" />
+      <nodes>
+        <classShapeMoniker Id="b5d4be6a-c687-4034-8859-9c359a73c733" />
+        <classShapeMoniker Id="5a06a4b1-6d33-4ac5-9168-6ee072025e12" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 4.69314697265625); (9 : 4.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Album/Album_Song" />
+      <nodes>
+        <classShapeMoniker Id="c34062b4-a6e5-41e6-8708-2870b0b69846" />
+        <classShapeMoniker Id="b5d4be6a-c687-4034-8859-9c359a73c733" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 3.84375); (9 : 3.84375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Artist/Artist_Song" />
+      <nodes>
+        <classShapeMoniker Id="57cb612e-e4d5-4722-9eb4-ff22e9714aa7" />
+        <classShapeMoniker Id="b5d4be6a-c687-4034-8859-9c359a73c733" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 8.00091745577925); (8.625 : 7.62591745577924); (8.625 : 5.36902747200521); (9 : 5.36902747200521)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/Music_Genre/Music_Genre_Song" />
+      <nodes>
+        <classShapeMoniker Id="98e86246-24e4-4587-8732-24e2cffde82f" />
+        <classShapeMoniker Id="b5d4be6a-c687-4034-8859-9c359a73c733" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 7.25); (11.375 : 6.875); (11.375 : 2.10942460742187); (11.75 : 2.10942460742187)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/User/User_Interaction" />
+      <nodes>
+        <classShapeMoniker Id="5bd45163-852f-48b1-8c92-292fb19e00cd" />
+        <classShapeMoniker Id="7f857ea2-8dcd-4aa9-99fa-469666291e69" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 8.82859537760417); (10 : 9.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DBkdkMusicModelDataContext/User/User_Playlist" />
+      <nodes>
+        <classShapeMoniker Id="5bd45163-852f-48b1-8c92-292fb19e00cd" />
+        <classShapeMoniker Id="38fba086-69fe-4bd0-8c26-b0809d03ca96" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

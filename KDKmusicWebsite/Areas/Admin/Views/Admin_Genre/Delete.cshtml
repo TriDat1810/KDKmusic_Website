@@ -1,0 +1,33 @@
+﻿@model KDKmusicWebsite.Models.Music_Genre
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Music_Genre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre_Name)
+        </dd>
+
+    </dl>
+
+    @{
+        int id = Model.Genre_Id;
+    }
+
+    <form action="@Url.Action("DeleteConfirmed", "Admin_Genre", new { genre_id =  id })" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-outline-danger">Xóa</button>
+    </form>
+</div>

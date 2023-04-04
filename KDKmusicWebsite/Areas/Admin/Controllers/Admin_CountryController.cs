@@ -22,7 +22,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             //Tạo biến số trang;
             int pageNumber = (page ?? 1);
 
-            //Lấy top 1 Country
+            //Lấy top
             var showlist = data.Countries.OrderBy(c => c.Country_Name);
             return View(showlist.ToPagedList(pageNumber, pageSize));
         }
@@ -81,7 +81,6 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             data.SubmitChanges();
             return RedirectToAction("ShowDisplay");
         }
-
 
         public ActionResult Edit(int id)
         {

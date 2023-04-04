@@ -4,45 +4,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-
-    main {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
-
-    @@media(max-width: 768px) {
-        main {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @@media(max-width: 480px) {
-        main {
-            grid-template-columns: repeat(1, 1fr);
-        }
-    }
-
-    div.col {
-        border: 2px solid;
-        padding: 20px;
-        width: 300px;
-        height: 300px;
-        margin: 10px auto 10px auto;
-    }
-
-    div.btn{
-        margin: 5px;
-    }
-
-    a.anchor{
-        font-size: 14px;
-        color: white;
-        text-decoration: none;
-    }
-</style>
-
 <main class="container text-center">
     <div class="col">
         <h4>
@@ -60,20 +21,20 @@
         <h4>Quản lý thông tin quốc gia và nghệ sĩ</h4>
         <hr />
         <div class="btn btn-primary">
-            <a class="anchor" href="@Url.Action("ShowDisplay", "Country_Manager", null, Request.Url.Scheme)">Quốc gia</a>
+            <a class="anchor" href="@Url.Action("ShowDisplay", "Admin_Country", null, Request.Url.Scheme)">Quốc gia</a>
         </div>
         <div class="btn btn-primary">
-            <a class="anchor" href="@Url.Action("ShowDisplay", "Artist_Manager", null, Request.Url.Scheme)">Nghệ sĩ</a>
+            <a class="anchor" href="@Url.Action("ShowDisplay", "Admin_Artist", null, Request.Url.Scheme)">Nghệ sĩ</a>
         </div>
     </div>
     <div class="col">
         <h4>Quản lý thư viện âm nhạc</h4>
         <hr />
         <div class="btn btn-primary">
-            <a class="anchor" href="@Url.Action("ShowDisplay", "Genre_Manager", null, Request.Url.Scheme)">Thể loại</a>
+            <a class="anchor" href="@Url.Action("ShowDisplay", "Admin_Genre", null, Request.Url.Scheme)">Thể loại</a>
         </div>
         <div class="btn btn-primary">
-            <a class="anchor" href="@Url.Action("ShowDisplay", "Music_Manager", null, Request.Url.Scheme)">Âm nhạc</a>
+            <a class="anchor" href="@Url.Action("ShowDisplay", "Admin_Music", null, Request.Url.Scheme)">Âm nhạc</a>
         </div>
     </div>
     <div class="col">

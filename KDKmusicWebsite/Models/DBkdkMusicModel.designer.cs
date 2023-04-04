@@ -30,6 +30,12 @@ namespace KDKmusicWebsite.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertAdmin(Admin instance);
+    partial void UpdateAdmin(Admin instance);
+    partial void DeleteAdmin(Admin instance);
+    partial void InsertAlbum(Album instance);
+    partial void UpdateAlbum(Album instance);
+    partial void DeleteAlbum(Album instance);
     partial void InsertArtist(Artist instance);
     partial void UpdateArtist(Artist instance);
     partial void DeleteArtist(Artist instance);
@@ -54,18 +60,13 @@ namespace KDKmusicWebsite.Models
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertAdmin(Admin instance);
-    partial void UpdateAdmin(Admin instance);
-    partial void DeleteAdmin(Admin instance);
-    partial void InsertAlbum(Album instance);
-    partial void UpdateAlbum(Album instance);
-    partial void DeleteAlbum(Album instance);
         #endregion
 
         public DBkdkMusicModelDataContext() : base(global::System.Configuration.ConfigurationManager.ConnectionStrings["KDKMusicConnectionString"].ConnectionString, mappingSource)
         {
-			OnCreated();
+            OnCreated();
         }
+
         public DBkdkMusicModelDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -88,6 +89,22 @@ namespace KDKmusicWebsite.Models
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Admin> Admins
+		{
+			get
+			{
+				return this.GetTable<Admin>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Album> Albums
+		{
+			get
+			{
+				return this.GetTable<Album>();
+			}
 		}
 		
 		public System.Data.Linq.Table<Artist> Artists
@@ -153,21 +170,366 @@ namespace KDKmusicWebsite.Models
 				return this.GetTable<User>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Admin")]
+	public partial class Admin : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<Admin> Admins
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _User_Id;
+		
+		private string _User_name;
+		
+		private string _Password;
+		
+		private string _E_mail;
+		
+		private string _FullName;
+		
+		private System.Nullable<bool> _is_Admin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUser_IdChanging(int value);
+    partial void OnUser_IdChanged();
+    partial void OnUser_nameChanging(string value);
+    partial void OnUser_nameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnE_mailChanging(string value);
+    partial void OnE_mailChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
+    partial void Onis_AdminChanging(System.Nullable<bool> value);
+    partial void Onis_AdminChanged();
+    #endregion
+		
+		public Admin()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int User_Id
 		{
 			get
 			{
-				return this.GetTable<Admin>();
+				return this._User_Id;
+			}
+			set
+			{
+				if ((this._User_Id != value))
+				{
+					this.OnUser_IdChanging(value);
+					this.SendPropertyChanging();
+					this._User_Id = value;
+					this.SendPropertyChanged("User_Id");
+					this.OnUser_IdChanged();
+				}
 			}
 		}
 		
-		public System.Data.Linq.Table<Album> Albums
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_name", DbType="VarChar(100)")]
+		public string User_name
 		{
 			get
 			{
-				return this.GetTable<Album>();
+				return this._User_name;
 			}
+			set
+			{
+				if ((this._User_name != value))
+				{
+					this.OnUser_nameChanging(value);
+					this.SendPropertyChanging();
+					this._User_name = value;
+					this.SendPropertyChanged("User_name");
+					this.OnUser_nameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_mail", DbType="VarChar(100)")]
+		public string E_mail
+		{
+			get
+			{
+				return this._E_mail;
+			}
+			set
+			{
+				if ((this._E_mail != value))
+				{
+					this.OnE_mailChanging(value);
+					this.SendPropertyChanging();
+					this._E_mail = value;
+					this.SendPropertyChanged("E_mail");
+					this.OnE_mailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(100)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_Admin", DbType="Bit")]
+		public System.Nullable<bool> is_Admin
+		{
+			get
+			{
+				return this._is_Admin;
+			}
+			set
+			{
+				if ((this._is_Admin != value))
+				{
+					this.Onis_AdminChanging(value);
+					this.SendPropertyChanging();
+					this._is_Admin = value;
+					this.SendPropertyChanged("is_Admin");
+					this.Onis_AdminChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Albums")]
+	public partial class Album : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Album_Id;
+		
+		private string _Album_Name;
+		
+		private System.Nullable<int> _Artist_Id;
+		
+		private EntitySet<Song> _Songs;
+		
+		private EntityRef<Artist> _Artist;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAlbum_IdChanging(int value);
+    partial void OnAlbum_IdChanged();
+    partial void OnAlbum_NameChanging(string value);
+    partial void OnAlbum_NameChanged();
+    partial void OnArtist_IdChanging(System.Nullable<int> value);
+    partial void OnArtist_IdChanged();
+    #endregion
+		
+		public Album()
+		{
+			this._Songs = new EntitySet<Song>(new Action<Song>(this.attach_Songs), new Action<Song>(this.detach_Songs));
+			this._Artist = default(EntityRef<Artist>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Album_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Album_Id
+		{
+			get
+			{
+				return this._Album_Id;
+			}
+			set
+			{
+				if ((this._Album_Id != value))
+				{
+					this.OnAlbum_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Album_Id = value;
+					this.SendPropertyChanged("Album_Id");
+					this.OnAlbum_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Album_Name", DbType="NVarChar(100)")]
+		public string Album_Name
+		{
+			get
+			{
+				return this._Album_Name;
+			}
+			set
+			{
+				if ((this._Album_Name != value))
+				{
+					this.OnAlbum_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Album_Name = value;
+					this.SendPropertyChanged("Album_Name");
+					this.OnAlbum_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist_Id", DbType="Int")]
+		public System.Nullable<int> Artist_Id
+		{
+			get
+			{
+				return this._Artist_Id;
+			}
+			set
+			{
+				if ((this._Artist_Id != value))
+				{
+					if (this._Artist.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnArtist_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Artist_Id = value;
+					this.SendPropertyChanged("Artist_Id");
+					this.OnArtist_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Album_Song", Storage="_Songs", ThisKey="Album_Id", OtherKey="Album_Id")]
+		public EntitySet<Song> Songs
+		{
+			get
+			{
+				return this._Songs;
+			}
+			set
+			{
+				this._Songs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Artist_Album", Storage="_Artist", ThisKey="Artist_Id", OtherKey="Artist_Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Artist Artist
+		{
+			get
+			{
+				return this._Artist.Entity;
+			}
+			set
+			{
+				Artist previousValue = this._Artist.Entity;
+				if (((previousValue != value) 
+							|| (this._Artist.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Artist.Entity = null;
+						previousValue.Albums.Remove(this);
+					}
+					this._Artist.Entity = value;
+					if ((value != null))
+					{
+						value.Albums.Add(this);
+						this._Artist_Id = value.Artist_Id;
+					}
+					else
+					{
+						this._Artist_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Artist");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Songs(Song entity)
+		{
+			this.SendPropertyChanging();
+			entity.Album = this;
+		}
+		
+		private void detach_Songs(Song entity)
+		{
+			this.SendPropertyChanging();
+			entity.Album = null;
 		}
 	}
 	
@@ -185,9 +547,11 @@ namespace KDKmusicWebsite.Models
 		
 		private System.Data.Linq.Binary _Artist_Image;
 		
-		private EntitySet<Song> _Songs;
+		private string _Artist_Info;
 		
 		private EntitySet<Album> _Albums;
+		
+		private EntitySet<Song> _Songs;
 		
 		private EntityRef<Country> _Country;
 		
@@ -203,12 +567,14 @@ namespace KDKmusicWebsite.Models
     partial void OnArtist_NameChanged();
     partial void OnArtist_ImageChanging(System.Data.Linq.Binary value);
     partial void OnArtist_ImageChanged();
+    partial void OnArtist_InfoChanging(string value);
+    partial void OnArtist_InfoChanged();
     #endregion
 		
 		public Artist()
 		{
-			this._Songs = new EntitySet<Song>(new Action<Song>(this.attach_Songs), new Action<Song>(this.detach_Songs));
 			this._Albums = new EntitySet<Album>(new Action<Album>(this.attach_Albums), new Action<Album>(this.detach_Albums));
+			this._Songs = new EntitySet<Song>(new Action<Song>(this.attach_Songs), new Action<Song>(this.detach_Songs));
 			this._Country = default(EntityRef<Country>);
 			OnCreated();
 		}
@@ -277,7 +643,7 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist_Image", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Artist_Image
 		{
 			get
@@ -297,16 +663,23 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Artist_Song", Storage="_Songs", ThisKey="Artist_Id", OtherKey="Artist_Id")]
-		public EntitySet<Song> Songs
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist_Info", DbType="NVarChar(MAX)")]
+		public string Artist_Info
 		{
 			get
 			{
-				return this._Songs;
+				return this._Artist_Info;
 			}
 			set
 			{
-				this._Songs.Assign(value);
+				if ((this._Artist_Info != value))
+				{
+					this.OnArtist_InfoChanging(value);
+					this.SendPropertyChanging();
+					this._Artist_Info = value;
+					this.SendPropertyChanged("Artist_Info");
+					this.OnArtist_InfoChanged();
+				}
 			}
 		}
 		
@@ -320,6 +693,19 @@ namespace KDKmusicWebsite.Models
 			set
 			{
 				this._Albums.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Artist_Song", Storage="_Songs", ThisKey="Artist_Id", OtherKey="Artist_Id")]
+		public EntitySet<Song> Songs
+		{
+			get
+			{
+				return this._Songs;
+			}
+			set
+			{
+				this._Songs.Assign(value);
 			}
 		}
 		
@@ -377,18 +763,6 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		private void attach_Songs(Song entity)
-		{
-			this.SendPropertyChanging();
-			entity.Artist = this;
-		}
-		
-		private void detach_Songs(Song entity)
-		{
-			this.SendPropertyChanging();
-			entity.Artist = null;
-		}
-		
 		private void attach_Albums(Album entity)
 		{
 			this.SendPropertyChanging();
@@ -396,6 +770,18 @@ namespace KDKmusicWebsite.Models
 		}
 		
 		private void detach_Albums(Album entity)
+		{
+			this.SendPropertyChanging();
+			entity.Artist = null;
+		}
+		
+		private void attach_Songs(Song entity)
+		{
+			this.SendPropertyChanging();
+			entity.Artist = this;
+		}
+		
+		private void detach_Songs(Song entity)
 		{
 			this.SendPropertyChanging();
 			entity.Artist = null;
@@ -1271,11 +1657,11 @@ namespace KDKmusicWebsite.Models
 		
 		private EntitySet<Playlist_Song> _Playlist_Songs;
 		
+		private EntityRef<Album> _Album;
+		
 		private EntityRef<Artist> _Artist;
 		
 		private EntityRef<Music_Genre> _Music_Genre;
-		
-		private EntityRef<Album> _Album;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1307,9 +1693,9 @@ namespace KDKmusicWebsite.Models
 		{
 			this._Interactions = new EntitySet<Interaction>(new Action<Interaction>(this.attach_Interactions), new Action<Interaction>(this.detach_Interactions));
 			this._Playlist_Songs = new EntitySet<Playlist_Song>(new Action<Playlist_Song>(this.attach_Playlist_Songs), new Action<Playlist_Song>(this.detach_Playlist_Songs));
+			this._Album = default(EntityRef<Album>);
 			this._Artist = default(EntityRef<Artist>);
 			this._Music_Genre = default(EntityRef<Music_Genre>);
-			this._Album = default(EntityRef<Album>);
 			OnCreated();
 		}
 		
@@ -1465,7 +1851,7 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lyrics", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lyrics", DbType="NVarChar(MAX)")]
 		public string Lyrics
 		{
 			get
@@ -1505,7 +1891,7 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Song_Image", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Song_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Song_Image
 		{
 			get
@@ -1548,6 +1934,40 @@ namespace KDKmusicWebsite.Models
 			set
 			{
 				this._Playlist_Songs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Album_Song", Storage="_Album", ThisKey="Album_Id", OtherKey="Album_Id", IsForeignKey=true)]
+		public Album Album
+		{
+			get
+			{
+				return this._Album.Entity;
+			}
+			set
+			{
+				Album previousValue = this._Album.Entity;
+				if (((previousValue != value) 
+							|| (this._Album.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Album.Entity = null;
+						previousValue.Songs.Remove(this);
+					}
+					this._Album.Entity = value;
+					if ((value != null))
+					{
+						value.Songs.Add(this);
+						this._Album_Id = value.Album_Id;
+					}
+					else
+					{
+						this._Album_Id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Album");
+				}
 			}
 		}
 		
@@ -1615,40 +2035,6 @@ namespace KDKmusicWebsite.Models
 						this._Genre_Id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Music_Genre");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Album_Song", Storage="_Album", ThisKey="Album_Id", OtherKey="Album_Id", IsForeignKey=true)]
-		public Album Album
-		{
-			get
-			{
-				return this._Album.Entity;
-			}
-			set
-			{
-				Album previousValue = this._Album.Entity;
-				if (((previousValue != value) 
-							|| (this._Album.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Album.Entity = null;
-						previousValue.Songs.Remove(this);
-					}
-					this._Album.Entity = value;
-					if ((value != null))
-					{
-						value.Songs.Add(this);
-						this._Album_Id = value.Album_Id;
-					}
-					else
-					{
-						this._Album_Id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Album");
 				}
 			}
 		}
@@ -1885,367 +2271,6 @@ namespace KDKmusicWebsite.Models
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Admin")]
-	public partial class Admin : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _User_Id;
-		
-		private string _User_name;
-		
-		private string _Password;
-		
-		private string _E_mail;
-		
-		private string _FullName;
-		
-		private System.Nullable<bool> _is_Admin;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUser_IdChanging(int value);
-    partial void OnUser_IdChanged();
-    partial void OnUser_nameChanging(string value);
-    partial void OnUser_nameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnE_mailChanging(string value);
-    partial void OnE_mailChanged();
-    partial void OnFullNameChanging(string value);
-    partial void OnFullNameChanged();
-    partial void Onis_AdminChanging(System.Nullable<bool> value);
-    partial void Onis_AdminChanged();
-    #endregion
-		
-		public Admin()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int User_Id
-		{
-			get
-			{
-				return this._User_Id;
-			}
-			set
-			{
-				if ((this._User_Id != value))
-				{
-					this.OnUser_IdChanging(value);
-					this.SendPropertyChanging();
-					this._User_Id = value;
-					this.SendPropertyChanged("User_Id");
-					this.OnUser_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_name", DbType="VarChar(100)")]
-		public string User_name
-		{
-			get
-			{
-				return this._User_name;
-			}
-			set
-			{
-				if ((this._User_name != value))
-				{
-					this.OnUser_nameChanging(value);
-					this.SendPropertyChanging();
-					this._User_name = value;
-					this.SendPropertyChanged("User_name");
-					this.OnUser_nameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_E_mail", DbType="VarChar(100)")]
-		public string E_mail
-		{
-			get
-			{
-				return this._E_mail;
-			}
-			set
-			{
-				if ((this._E_mail != value))
-				{
-					this.OnE_mailChanging(value);
-					this.SendPropertyChanging();
-					this._E_mail = value;
-					this.SendPropertyChanged("E_mail");
-					this.OnE_mailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(100)")]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this.OnFullNameChanging(value);
-					this.SendPropertyChanging();
-					this._FullName = value;
-					this.SendPropertyChanged("FullName");
-					this.OnFullNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_Admin", DbType="Bit")]
-		public System.Nullable<bool> is_Admin
-		{
-			get
-			{
-				return this._is_Admin;
-			}
-			set
-			{
-				if ((this._is_Admin != value))
-				{
-					this.Onis_AdminChanging(value);
-					this.SendPropertyChanging();
-					this._is_Admin = value;
-					this.SendPropertyChanged("is_Admin");
-					this.Onis_AdminChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Albums")]
-	public partial class Album : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Album_Id;
-		
-		private string _Album_Name;
-		
-		private System.Nullable<int> _Artist_Id;
-		
-		private EntitySet<Song> _Songs;
-		
-		private EntityRef<Artist> _Artist;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAlbum_IdChanging(int value);
-    partial void OnAlbum_IdChanged();
-    partial void OnAlbum_NameChanging(string value);
-    partial void OnAlbum_NameChanged();
-    partial void OnArtist_IdChanging(System.Nullable<int> value);
-    partial void OnArtist_IdChanged();
-    #endregion
-		
-		public Album()
-		{
-			this._Songs = new EntitySet<Song>(new Action<Song>(this.attach_Songs), new Action<Song>(this.detach_Songs));
-			this._Artist = default(EntityRef<Artist>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Album_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Album_Id
-		{
-			get
-			{
-				return this._Album_Id;
-			}
-			set
-			{
-				if ((this._Album_Id != value))
-				{
-					this.OnAlbum_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Album_Id = value;
-					this.SendPropertyChanged("Album_Id");
-					this.OnAlbum_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Album_Name", DbType="NVarChar(100)")]
-		public string Album_Name
-		{
-			get
-			{
-				return this._Album_Name;
-			}
-			set
-			{
-				if ((this._Album_Name != value))
-				{
-					this.OnAlbum_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Album_Name = value;
-					this.SendPropertyChanged("Album_Name");
-					this.OnAlbum_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist_Id", DbType="Int")]
-		public System.Nullable<int> Artist_Id
-		{
-			get
-			{
-				return this._Artist_Id;
-			}
-			set
-			{
-				if ((this._Artist_Id != value))
-				{
-					if (this._Artist.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnArtist_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Artist_Id = value;
-					this.SendPropertyChanged("Artist_Id");
-					this.OnArtist_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Album_Song", Storage="_Songs", ThisKey="Album_Id", OtherKey="Album_Id")]
-		public EntitySet<Song> Songs
-		{
-			get
-			{
-				return this._Songs;
-			}
-			set
-			{
-				this._Songs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Artist_Album", Storage="_Artist", ThisKey="Artist_Id", OtherKey="Artist_Id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Artist Artist
-		{
-			get
-			{
-				return this._Artist.Entity;
-			}
-			set
-			{
-				Artist previousValue = this._Artist.Entity;
-				if (((previousValue != value) 
-							|| (this._Artist.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Artist.Entity = null;
-						previousValue.Albums.Remove(this);
-					}
-					this._Artist.Entity = value;
-					if ((value != null))
-					{
-						value.Albums.Add(this);
-						this._Artist_Id = value.Artist_Id;
-					}
-					else
-					{
-						this._Artist_Id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Artist");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Songs(Song entity)
-		{
-			this.SendPropertyChanging();
-			entity.Album = this;
-		}
-		
-		private void detach_Songs(Song entity)
-		{
-			this.SendPropertyChanging();
-			entity.Album = null;
 		}
 	}
 }

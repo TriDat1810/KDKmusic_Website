@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
       <HintPath>..\packages\Facebook.7.0.6\lib\net45\Facebook.dll</HintPath>
     </Reference>
@@ -165,6 +172,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Admin_ArtistController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_GenreController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_CountryController.cs" />
@@ -1868,6 +1876,7 @@
     <Content Include="Assets\Admin\vendor\jquery\jquery.min.js" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Assets\Mine\css\style.css" />
     <Content Include="Assets\User\css\bootstrap.min.css" />
     <Content Include="Assets\User\css\font-awesome.min.css" />
     <Content Include="Assets\User\css\owl.carousel.min.css" />
@@ -1932,11 +1941,6 @@
     <Content Include="Assets\User\icon-fonts\fontawesome-webfont.eot" />
     <Content Include="Assets\User\icon-fonts\fontawesome-webfont.woff" />
     <Content Include="Assets\User\icon-fonts\fontawesome-webfont.woff2" />
-    <Content Include="Models\DBkdkMusicModel.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DBkdkMusicModel.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Assets\Admin\scss\navs\_global.scss" />
     <Content Include="Assets\Admin\scss\navs\_sidebar.scss" />
     <Content Include="Assets\Admin\scss\navs\_topbar.scss" />
@@ -2120,6 +2124,15 @@
     <Content Include="Areas\Admin\Views\Admin_Country\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Genre\ShowDisplay.cshtml" />
     <Content Include="Assets\User\font\DeliciousHandrawn-Regular.ttf" />
+    <Content Include="Areas\Admin\Views\Admin_Genre\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Genre\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Genre\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Artist\ShowDisplay.cshtml" />
+    <Content Include="Models\DBkdkMusicModel.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DBkdkMusicModel.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\DBkdkMusicModel.dbml.layout">
       <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
     </None>
@@ -2160,7 +2173,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Country\" />
     <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
@@ -2227,8 +2239,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets" Condition="Exists('..\packages\NAudio.Lame.2.0.1\build\NAudio.Lame.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

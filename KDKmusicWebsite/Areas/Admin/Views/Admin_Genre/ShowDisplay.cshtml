@@ -7,78 +7,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    table.table {
-        border: 1px solid black;
-        color: black;
-    }
 
-        table.table th {
-            border: 1px solid black;
-            text-align: center;
-        }
-
-        table.table td {
-            border: 1px solid black;
-            text-align: center;
-        }
-
-    a.btn {
-        margin: auto auto 5px 5px;
-        text-decoration: none;
-        background-color: blue;
-        color: white;
-    }
-
-        a.btn :hover {
-            cursor: pointer;
-        }
-
-    .anchor-component {
-        background-color: black;
-    }
-
-    /*CSS form PAGINATION*/
-    /* Phân trang */
-    .pager {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-        .pager ul {
-            display: inline-block;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .pager li {
-            display: inline-block;
-            margin: 0 5px;
-        }
-
-            .pager li a {
-                display: inline-block;
-                padding: 5px 10px;
-                border: 1px solid #ccc;
-                color: #333;
-                text-decoration: none;
-            }
-
-            .pager li.active a {
-                background-color: #337ab7;
-                color: #fff;
-                border-color: #337ab7;
-            }
-
-            .pager li a:hover {
-                background-color: #337ab7;
-                color: #fff;
-                border-color: #337ab7;
-            }
-</style>
-
-<main>
+<div class="container text-center">
     <center style="margin: 5px auto"><h2 style="font-style: inherit;">DANH SÁCH QUỐC GIA</h2></center>
 
     <a href="@Url.Action("Create")" class="btn">Thêm mới</a>
@@ -137,4 +67,4 @@
 
     </div>
 
-</main>
+</div>
