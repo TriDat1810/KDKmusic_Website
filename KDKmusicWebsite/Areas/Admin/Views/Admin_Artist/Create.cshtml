@@ -19,7 +19,7 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Artist_Image, htmlAttributes: new { @class = "control-label" })
-        <input type="file" id="Artist_Image" name="Artist_Image" class="form-control" />
+        <input type="file" id="fileUpLoad" name="fileUpLoad" class="form-control" />
         @Html.ValidationMessageFor(model => model.Artist_Image, "", new { @class = "text-danger" })
     </div>
 
@@ -42,7 +42,7 @@
 
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở lại", "ShowDisplay")
 </div>
 
 @section Scripts {

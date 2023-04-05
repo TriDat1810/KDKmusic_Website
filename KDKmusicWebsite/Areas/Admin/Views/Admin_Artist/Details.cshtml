@@ -8,7 +8,7 @@
 <div class="container text-center">
     <h4>Artist</h4>
     <hr />
-    <img src="@Url.Action("DisplayImage", "Admin_Artist", new { imageId = Model.Artist_Id })" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
+    <img src="@Url.Content(Model.Artist_Image)" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
     <h6>Tên: @Html.DisplayFor(Model => Model.Artist_Name)</h6>
     <p>Quốc gia: @Html.DisplayFor(Model => Model.Country.Country_Name)</p>
     <p>Id nghệ sĩ: @Html.DisplayFor(Model => Model.Artist_Id)</p>

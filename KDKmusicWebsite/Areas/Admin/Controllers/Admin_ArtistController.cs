@@ -76,7 +76,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (fileUpLoad!= null && fileUpLoad.ContentLength > 0)
+                if (fileUpLoad != null && fileUpLoad.ContentLength > 0)
                 {
                     if (ImageExtensions.IsImage(fileUpLoad))
                     {
@@ -89,16 +89,13 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
 
                         var fileName = Path.GetFileName(fileUpLoad.FileName);
                         var path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
-                        using (var fileStream = System.IO.File.Create(path))
-                        {
-                            fileUpLoad.InputStream.CopyTo(fileStream);
-                        }
+                        fileUpLoad.SaveAs(path);
                         artist.Artist_Image = "~/Assets/Mine/images/" + fileName;
 
                         data.Artists.InsertOnSubmit(artist);
                         data.SubmitChanges();
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("ShowDisplay");
                     }
                     else
                     {
@@ -115,6 +112,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
 
             return View(model);
         }
+
 
 
     }
