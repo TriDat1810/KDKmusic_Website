@@ -48,7 +48,7 @@
                         <p class="mb-0">@item.Song_Name</p>
 
                         <audio controls id="music" preload="metadata">
-                            <source src="@Url.Action("Play", "Music", new {id = item.Song_Id})" type="audio/mpeg">
+                            <source src="@Url.Content(item.Song_Path)" type="audio/mp3"/>
                         </audio>
 
                         <!-- Kiểm tra xem người dùng đã đăng nhập hay chưa -->

@@ -36,12 +36,12 @@ namespace KDKmusicWebsite.Models
     partial void InsertAlbum(Album instance);
     partial void UpdateAlbum(Album instance);
     partial void DeleteAlbum(Album instance);
-    partial void InsertArtist(Artist instance);
-    partial void UpdateArtist(Artist instance);
-    partial void DeleteArtist(Artist instance);
     partial void InsertCountry(Country instance);
     partial void UpdateCountry(Country instance);
     partial void DeleteCountry(Country instance);
+    partial void InsertArtist(Artist instance);
+    partial void UpdateArtist(Artist instance);
+    partial void DeleteArtist(Artist instance);
     partial void InsertInteraction(Interaction instance);
     partial void UpdateInteraction(Interaction instance);
     partial void DeleteInteraction(Interaction instance);
@@ -62,7 +62,7 @@ namespace KDKmusicWebsite.Models
     partial void DeleteUser(User instance);
         #endregion
 
-        public DBkdkMusicModelDataContext() : base(global::System.Configuration.ConfigurationManager.ConnectionStrings["KDKMusicConnectionString"].ConnectionString, mappingSource)
+        public DBkdkMusicModelDataContext() : base(global::System.Configuration.ConfigurationManager.ConnectionStrings["KDKMusicConnectionString1"].ConnectionString, mappingSource)
         {
             OnCreated();
         }
@@ -107,19 +107,19 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Artist> Artists
-		{
-			get
-			{
-				return this.GetTable<Artist>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Country> Countries
 		{
 			get
 			{
 				return this.GetTable<Country>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Artist> Artists
+		{
+			get
+			{
+				return this.GetTable<Artist>();
 			}
 		}
 		
@@ -533,6 +533,120 @@ namespace KDKmusicWebsite.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Country")]
+	public partial class Country : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Country_Id;
+		
+		private string _Country_Name;
+		
+		private EntitySet<Artist> _Artists;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCountry_IdChanging(int value);
+    partial void OnCountry_IdChanged();
+    partial void OnCountry_NameChanging(string value);
+    partial void OnCountry_NameChanged();
+    #endregion
+		
+		public Country()
+		{
+			this._Artists = new EntitySet<Artist>(new Action<Artist>(this.attach_Artists), new Action<Artist>(this.detach_Artists));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Country_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Country_Id
+		{
+			get
+			{
+				return this._Country_Id;
+			}
+			set
+			{
+				if ((this._Country_Id != value))
+				{
+					this.OnCountry_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Country_Id = value;
+					this.SendPropertyChanged("Country_Id");
+					this.OnCountry_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Country_Name", DbType="NVarChar(100)")]
+		public string Country_Name
+		{
+			get
+			{
+				return this._Country_Name;
+			}
+			set
+			{
+				if ((this._Country_Name != value))
+				{
+					this.OnCountry_NameChanging(value);
+					this.SendPropertyChanging();
+					this._Country_Name = value;
+					this.SendPropertyChanged("Country_Name");
+					this.OnCountry_NameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Country_Artist", Storage="_Artists", ThisKey="Country_Id", OtherKey="Country_Id")]
+		public EntitySet<Artist> Artists
+		{
+			get
+			{
+				return this._Artists;
+			}
+			set
+			{
+				this._Artists.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Artists(Artist entity)
+		{
+			this.SendPropertyChanging();
+			entity.Country = this;
+		}
+		
+		private void detach_Artists(Artist entity)
+		{
+			this.SendPropertyChanging();
+			entity.Country = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Artist")]
 	public partial class Artist : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -545,7 +659,7 @@ namespace KDKmusicWebsite.Models
 		
 		private string _Artist_Name;
 		
-		private System.Data.Linq.Binary _Artist_Image;
+		private string _Artist_Image;
 		
 		private string _Artist_Info;
 		
@@ -565,7 +679,7 @@ namespace KDKmusicWebsite.Models
     partial void OnCountry_IdChanged();
     partial void OnArtist_NameChanging(string value);
     partial void OnArtist_NameChanged();
-    partial void OnArtist_ImageChanging(System.Data.Linq.Binary value);
+    partial void OnArtist_ImageChanging(string value);
     partial void OnArtist_ImageChanged();
     partial void OnArtist_InfoChanging(string value);
     partial void OnArtist_InfoChanged();
@@ -643,8 +757,8 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Artist_Image
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Artist_Image", DbType="VarChar(MAX)")]
+		public string Artist_Image
 		{
 			get
 			{
@@ -785,120 +899,6 @@ namespace KDKmusicWebsite.Models
 		{
 			this.SendPropertyChanging();
 			entity.Artist = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Country")]
-	public partial class Country : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Country_Id;
-		
-		private string _Country_Name;
-		
-		private EntitySet<Artist> _Artists;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnCountry_IdChanging(int value);
-    partial void OnCountry_IdChanged();
-    partial void OnCountry_NameChanging(string value);
-    partial void OnCountry_NameChanged();
-    #endregion
-		
-		public Country()
-		{
-			this._Artists = new EntitySet<Artist>(new Action<Artist>(this.attach_Artists), new Action<Artist>(this.detach_Artists));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Country_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Country_Id
-		{
-			get
-			{
-				return this._Country_Id;
-			}
-			set
-			{
-				if ((this._Country_Id != value))
-				{
-					this.OnCountry_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Country_Id = value;
-					this.SendPropertyChanged("Country_Id");
-					this.OnCountry_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Country_Name", DbType="NVarChar(100)")]
-		public string Country_Name
-		{
-			get
-			{
-				return this._Country_Name;
-			}
-			set
-			{
-				if ((this._Country_Name != value))
-				{
-					this.OnCountry_NameChanging(value);
-					this.SendPropertyChanging();
-					this._Country_Name = value;
-					this.SendPropertyChanged("Country_Name");
-					this.OnCountry_NameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Country_Artist", Storage="_Artists", ThisKey="Country_Id", OtherKey="Country_Id")]
-		public EntitySet<Artist> Artists
-		{
-			get
-			{
-				return this._Artists;
-			}
-			set
-			{
-				this._Artists.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Artists(Artist entity)
-		{
-			this.SendPropertyChanging();
-			entity.Country = this;
-		}
-		
-		private void detach_Artists(Artist entity)
-		{
-			this.SendPropertyChanging();
-			entity.Country = null;
 		}
 	}
 	
@@ -1645,13 +1645,11 @@ namespace KDKmusicWebsite.Models
 		
 		private string _Song_Path;
 		
-		private System.Data.Linq.Binary _Song_Data;
-		
 		private string _Lyrics;
 		
 		private System.Nullable<System.DateTime> _Create_at;
 		
-		private System.Data.Linq.Binary _Song_Image;
+		private string _Song_Image;
 		
 		private EntitySet<Interaction> _Interactions;
 		
@@ -1679,13 +1677,11 @@ namespace KDKmusicWebsite.Models
     partial void OnSong_NameChanged();
     partial void OnSong_PathChanging(string value);
     partial void OnSong_PathChanged();
-    partial void OnSong_DataChanging(System.Data.Linq.Binary value);
-    partial void OnSong_DataChanged();
     partial void OnLyricsChanging(string value);
     partial void OnLyricsChanged();
     partial void OnCreate_atChanging(System.Nullable<System.DateTime> value);
     partial void OnCreate_atChanged();
-    partial void OnSong_ImageChanging(System.Data.Linq.Binary value);
+    partial void OnSong_ImageChanging(string value);
     partial void OnSong_ImageChanged();
     #endregion
 		
@@ -1831,26 +1827,6 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Song_Data", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Song_Data
-		{
-			get
-			{
-				return this._Song_Data;
-			}
-			set
-			{
-				if ((this._Song_Data != value))
-				{
-					this.OnSong_DataChanging(value);
-					this.SendPropertyChanging();
-					this._Song_Data = value;
-					this.SendPropertyChanged("Song_Data");
-					this.OnSong_DataChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lyrics", DbType="NVarChar(MAX)")]
 		public string Lyrics
 		{
@@ -1891,8 +1867,8 @@ namespace KDKmusicWebsite.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Song_Image", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Song_Image
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Song_Image", DbType="VarChar(MAX)")]
+		public string Song_Image
 		{
 			get
 			{

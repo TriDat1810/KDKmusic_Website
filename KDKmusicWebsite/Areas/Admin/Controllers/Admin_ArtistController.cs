@@ -1,13 +1,15 @@
-﻿using KDKmusicWebsite.Models;
+﻿using KDKmusicWebsite.Areas.Admin.Extensions;
+using KDKmusicWebsite.Models;
 using PagedList;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace KDKmusicWebsite.Areas.Admin.Controllers
 {
@@ -32,16 +34,15 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             byte[] imageData = null;
 
             // Kết nối tới database và lấy hình ảnh từ cột Artist_Image theo id của nghệ sĩ
-            imageData = data.Artists.FirstOrDefault(m => m.Artist_Id == imageId)?.Artist_Image.ToArray(); ;
 
             // Kiểm tra xem hình ảnh có tồn tại không
             if (imageData != null)
             {
                 // Chuyển đổi kiểu dữ liệu từ Varbinary(Max) sang Image
-                Image image = null;
+                System.Drawing.Image image = null;
                 using (MemoryStream ms = new MemoryStream(imageData))
                 {
-                    image = Image.FromStream(ms);
+                    image = System.Drawing.Image.FromStream(ms);
                 }
 
                 // Trả về hình ảnh dưới dạng FileResult
@@ -51,6 +52,70 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             // Trả về 404 Not Found nếu không tìm thấy hình ảnh
             return HttpNotFound();
         }
+
+        public ActionResult Details(int id)
+        {
+            var showlist = data.Artists.FirstOrDefault(data => data.Artist_Id == id);
+            if (showlist == null)
+            {
+                return HttpNotFound();
+            }
+            return View(showlist);
+        }
+
+        public ActionResult Create()
+        {
+            ViewBag.CountryList = new SelectList(data.Countries.OrderBy(c => c.Country_Name), "Country_Id", "Country_Name");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Artist model, HttpPostedFileBase fileUpLoad)
+        {
+            if (ModelState.IsValid)
+            {
+                if (fileUpLoad!= null && fileUpLoad.ContentLength > 0)
+                {
+                    if (ImageExtensions.IsImage(fileUpLoad))
+                    {
+                        var artist = new Artist
+                        {
+                            Artist_Name = model.Artist_Name,
+                            Artist_Info = model.Artist_Info,
+                            Country_Id = model.Country_Id
+                        };
+
+                        var fileName = Path.GetFileName(fileUpLoad.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
+                        using (var fileStream = System.IO.File.Create(path))
+                        {
+                            fileUpLoad.InputStream.CopyTo(fileStream);
+                        }
+                        artist.Artist_Image = "~/Assets/Mine/images/" + fileName;
+
+                        data.Artists.InsertOnSubmit(artist);
+                        data.SubmitChanges();
+
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("fileUpLoad", "Please upload an image file.");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("fileUpLoad", "Please upload an image file.");
+                }
+            }
+
+            ViewBag.CountryList = new SelectList(data.Countries, "Country_Id", "Country_Name", model.Country_Id);
+
+            return View(model);
+        }
+
 
     }
 }

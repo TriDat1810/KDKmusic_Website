@@ -2,6 +2,18 @@
 @using PagedList.Mvc;
 @model PagedList.PagedList<KDKmusicWebsite.Models.Artist>
 
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<p>...</p>
+    }
+}
+
 @{
     ViewBag.Title = "ShowDisplay";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -46,10 +58,10 @@
                     @Html.DisplayFor(modelItem => item.Country.Country_Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Artist_Info)
+                    @Truncate(item.Artist_Info, 100)
                 </td>
                 <td>
-                    <img src="@Url.Action("DisplayImage", "Admin_Artist", new { imageId = item.Artist_Id })" />
+                    <img src="@Url.Content(item.Artist_Image)" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Artist_Id }) |

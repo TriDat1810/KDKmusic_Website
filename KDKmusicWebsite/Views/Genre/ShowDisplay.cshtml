@@ -67,8 +67,8 @@
     {
         <div class="contentArtist">
             <img src="~/Assets/User/img/premium/1.jpg" />
-            <h4>Thể loại</h4>
-            <a href="@Url.Action("ShowDisplay", "Music", new { Genre_id = item.Genre_Id })" class="btn btn-primary">@item.Genre_Name</a>
+            <h4>@item.Genre_Name</h4>
+            <a href="@Url.Action("ShowDisplay", "Music", new { Genre_id = item.Genre_Id })" class="btn btn-primary">Xem nhạc</a>
         </div>
     }
 </main>

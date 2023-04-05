@@ -1,0 +1,21 @@
+﻿@model KDKmusicWebsite.Models.Artist
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center">
+    <h4>Artist</h4>
+    <hr />
+    <img src="@Url.Action("DisplayImage", "Admin_Artist", new { imageId = Model.Artist_Id })" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
+    <h6>Tên: @Html.DisplayFor(Model => Model.Artist_Name)</h6>
+    <p>Quốc gia: @Html.DisplayFor(Model => Model.Country.Country_Name)</p>
+    <p>Id nghệ sĩ: @Html.DisplayFor(Model => Model.Artist_Id)</p>
+    <hr />
+    <p class="tab-content">@Html.DisplayFor(Model => Model.Artist_Info)</p>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Artist_Id }) |
+    @Html.ActionLink("Trở lại", "ShowDisplay")
+</p>

@@ -46,6 +46,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -176,6 +177,7 @@
     <Compile Include="Areas\Admin\Controllers\Admin_GenreController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_CountryController.cs" />
+    <Compile Include="Areas\Admin\Extensions\ImageExtensions.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1877,6 +1879,10 @@
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Assets\Mine\css\style.css" />
+    <Content Include="Assets\Mine\images\Alan_Walker.jpg" />
+    <Content Include="Assets\Mine\images\NewJeans.jpg" />
+    <Content Include="Assets\Mine\musics\Ditto.mp3" />
+    <Content Include="Assets\Mine\musics\Fade.mp3" />
     <Content Include="Assets\User\css\bootstrap.min.css" />
     <Content Include="Assets\User\css\font-awesome.min.css" />
     <Content Include="Assets\User\css\owl.carousel.min.css" />
@@ -2128,6 +2134,8 @@
     <Content Include="Areas\Admin\Views\Admin_Genre\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Genre\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Artist\ShowDisplay.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Artist\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Artist\Create.cshtml" />
     <Content Include="Models\DBkdkMusicModel.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>DBkdkMusicModel.designer.cs</LastGenOutput>
@@ -2173,7 +2181,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="DTO\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

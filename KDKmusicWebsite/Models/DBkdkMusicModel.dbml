@@ -18,23 +18,23 @@
       <Association Name="Artist_Album" Member="Artist" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Artist" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
-  <Table Name="dbo.Artist" Member="Artists">
-    <Type Name="Artist">
-      <Column Name="Artist_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Country_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Artist_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Artist_Image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Artist_Info" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Artist_Album" Member="Albums" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Album" />
-      <Association Name="Artist_Song" Member="Songs" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Song" />
-      <Association Name="Country_Artist" Member="Country" ThisKey="Country_Id" OtherKey="Country_Id" Type="Country" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Country" Member="Countries">
     <Type Name="Country">
       <Column Name="Country_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Country_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="Country_Artist" Member="Artists" ThisKey="Country_Id" OtherKey="Country_Id" Type="Artist" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Artist" Member="Artists">
+    <Type Name="Artist">
+      <Column Name="Artist_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Country_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Artist_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Artist_Image" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Artist_Info" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Artist_Album" Member="Albums" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Album" />
+      <Association Name="Artist_Song" Member="Songs" ThisKey="Artist_Id" OtherKey="Artist_Id" Type="Song" />
+      <Association Name="Country_Artist" Member="Country" ThisKey="Country_Id" OtherKey="Country_Id" Type="Country" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Interaction" Member="Interactions">
@@ -81,10 +81,9 @@
       <Column Name="Album_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Song_Name" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Song_Path" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="Song_Data" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Lyrics" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Create_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Song_Image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Song_Image" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="Song_Interaction" Member="Interactions" ThisKey="Song_Id" OtherKey="Song_Id" Type="Interaction" />
       <Association Name="Song_Playlist_Song" Member="Playlist_Songs" ThisKey="Song_Id" OtherKey="Song_Id" Type="Playlist_Song" />
       <Association Name="Album_Song" Member="Album" ThisKey="Album_Id" OtherKey="Album_Id" Type="Album" IsForeignKey="true" />

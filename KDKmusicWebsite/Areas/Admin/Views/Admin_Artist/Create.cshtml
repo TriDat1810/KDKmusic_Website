@@ -1,0 +1,50 @@
+﻿@model KDKmusicWebsite.Models.Artist
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Nhập thông tin nghệ sĩ mới</h2></center>
+
+@using (Html.BeginForm("Create", "Admin_Artist", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Artist_Name, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Artist_Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Artist_Name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Artist_Image, htmlAttributes: new { @class = "control-label" })
+        <input type="file" id="Artist_Image" name="Artist_Image" class="form-control" />
+        @Html.ValidationMessageFor(model => model.Artist_Image, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Country_Id, "Country", htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.Country_Id, (SelectList)ViewBag.CountryList, "Chọn quốc gia", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Country_Id, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Artist_Info, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Artist_Info, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Artist_Info, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
