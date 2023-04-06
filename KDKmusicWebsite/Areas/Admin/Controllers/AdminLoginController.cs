@@ -13,7 +13,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
     {
         DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
 
-        // GET: Admin/AdminLogin
+        #region MD5 Encypt
         static string GetMd5Hash(MD5 md5Hash, string input)
         {
             // Convert the input string to a byte array and compute the hash.
@@ -25,6 +25,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             }
             return sBuilder.ToString();
         }
+        #endregion
+
+        #region function check info
         private bool checktk(string Username)
         {
             return data.Admins.Count(x => x.User_name == Username) > 0;
@@ -33,6 +36,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         {
             return data.Admins.Count(x => x.E_mail == em) > 0;
         }
+        #endregion
+
+        #region Login
         [HttpGet]
         public ActionResult Login()
         {
@@ -70,15 +76,21 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             }
             return this.Login();
         }
+        #endregion
+
+        #region Log Off
         public ActionResult Logoff()
         {
             Session.Clear();
             return RedirectToAction("AdminIndex", "Admin_Home");
         }
+        #endregion
 
+        #region change info btn in nav when login
         public ActionResult LoginPartial()
         {
             return PartialView("LoginPartial");
         }
+        #endregion
     }
 }

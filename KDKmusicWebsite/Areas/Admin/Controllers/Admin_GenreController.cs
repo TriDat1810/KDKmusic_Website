@@ -12,6 +12,8 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
     public class Admin_GenreController : Controller
     {
         DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+
+        #region Show Display
         // GET: Admin/Admin_Genre
         public ActionResult ShowDisplay(int? page)
         {
@@ -25,6 +27,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             return View(showlist.ToPagedList(pageNumber, pageSize));
         }
 
+        #endregion
+
+        #region Create
         public ActionResult Create()
         {
             return View();
@@ -46,7 +51,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                 return View(newGenre);
             }
         }
+        #endregion
 
+        #region Delele
         public ActionResult Delete(int id)
         {
             var genre = data.Music_Genres.FirstOrDefault(c => c.Genre_Id== id);
@@ -74,7 +81,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             data.SubmitChanges();
             return RedirectToAction("ShowDisplay");
         }
+        #endregion
 
+        #region Edit
         public ActionResult Edit(int id)
         {
             Music_Genre genre = data.Music_Genres.SingleOrDefault(c => c.Genre_Id == id);
@@ -110,5 +119,6 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                 return View(editedGenre);
             }
         }
+        #endregion
     }
 }

@@ -8,15 +8,26 @@
 <h2>Xóa quốc gia</h2>
 
 <p>Bạn có chắc chắn muốn xóa quốc gia này không?</p>
+<div>
+    <p>Tên quốc gia: @Model.Country_Name</p>
+    <p>Mã quốc gia: @Model.Country_Id</p>
 
-<p>Tên quốc gia: @Model.Country_Name</p>
-<p>Mã quốc gia: @Model.Country_Id</p>
+    @{
+        int id = Model.Country_Id;
+    }
 
-@{
-    int id = Model.Country_Id;
-}
+    <form action="@Url.Action("DeleteConfirmed", "Admin_Country", new { country_id = id })" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-outline-danger">Xóa</button>
+    </form>
 
-<form action="@Url.Action("DeleteConfirmed", "Admin_Country", new { country_id = id })" method="post">
-    @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-outline-danger">Xóa</button>
-</form>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại", "ShowDisplay")
+        </div>
+    }
+</div>

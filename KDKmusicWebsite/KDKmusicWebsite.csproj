@@ -1881,6 +1881,7 @@
     <Content Include="Assets\Mine\css\style.css" />
     <Content Include="Assets\Mine\images\Alan_Walker.jpg" />
     <Content Include="Assets\Mine\images\NewJeans.jpg" />
+    <Content Include="Assets\Mine\js\main.js" />
     <Content Include="Assets\Mine\musics\Ditto.mp3" />
     <Content Include="Assets\Mine\musics\Fade.mp3" />
     <Content Include="Assets\User\css\bootstrap.min.css" />
@@ -2141,6 +2142,8 @@
       <LastGenOutput>DBkdkMusicModel.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Areas\Admin\Views\Admin_Artist\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Artist\Delete.cshtml" />
     <None Include="Models\DBkdkMusicModel.dbml.layout">
       <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
     </None>

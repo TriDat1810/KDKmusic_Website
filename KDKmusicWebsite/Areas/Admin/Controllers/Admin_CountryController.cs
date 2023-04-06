@@ -14,6 +14,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
     {
         DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
 
+        #region Show Display
         // GET: Admin/Admin_Country
         public ActionResult ShowDisplay(int? page)
         {
@@ -26,7 +27,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             var showlist = data.Countries.OrderBy(c => c.Country_Name);
             return View(showlist.ToPagedList(pageNumber, pageSize));
         }
+        #endregion
 
+        #region Create
         public ActionResult Create()
         {
             return View();
@@ -48,7 +51,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                 return View(newCountry);
             }
         }
+        #endregion
 
+        #region Delete
         public ActionResult Delete(int id)
         {
             // Lấy thông tin quốc gia cần xóa từ Database theo mã quốc gia
@@ -81,7 +86,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             data.SubmitChanges();
             return RedirectToAction("ShowDisplay");
         }
+        #endregion
 
+        #region Edit
         public ActionResult Edit(int id)
         {
             Country country = data.Countries.SingleOrDefault(c => c.Country_Id == id);
@@ -117,5 +124,6 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                 return View(editedCountry);
             }
         }
+        #endregion
     }
 }

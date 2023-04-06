@@ -14,6 +14,8 @@ namespace KDKmusicWebsite.Controllers
     public class UserController : Controller
     {
         DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+
+        #region MD5 encrypt
         // GET: User
         private string mahoamd5(string input)
         {
@@ -29,6 +31,9 @@ namespace KDKmusicWebsite.Controllers
                 return builder.ToString();
             }
         }
+        #endregion
+
+        #region check info
         public static bool checkkitu(string input)
         {
             char[] specialChar = { ' ', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', '\\', ':', ';', '\"', '\'', '<', '>', ',', '.', '?', '/' };
@@ -45,7 +50,9 @@ namespace KDKmusicWebsite.Controllers
         {
             return input.Contains(" ");
         }
+        #endregion
 
+        #region Register
         [HttpGet]
         public ActionResult Register()
         {
@@ -110,6 +117,9 @@ namespace KDKmusicWebsite.Controllers
             }
             return this.Register();
         }
+        #endregion
+
+        #region Check info
         private bool checktk(string Username)
         {
             return data.Users.Count(x => x.User_name == Username) > 0;
@@ -118,6 +128,9 @@ namespace KDKmusicWebsite.Controllers
         {
             return data.Users.Count(x => x.E_mail == em) > 0;
         }
+        #endregion
+
+        #region Login
         [HttpGet]
         public ActionResult Login()
         {
@@ -155,6 +168,9 @@ namespace KDKmusicWebsite.Controllers
             }
             return this.Login();
         }
+        #endregion
+
+        #region Log Off And Change Info when Login
         public ActionResult Logoff()
         {
             Session.Clear();
@@ -165,10 +181,9 @@ namespace KDKmusicWebsite.Controllers
         {
             return PartialView("LoginPartial");
         }
+        #endregion
 
-
-
-
+        #region Login By Facebook
         //Login bằng facebook
         private Uri RedirectUri
         {
@@ -242,5 +257,6 @@ namespace KDKmusicWebsite.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+        #endregion
     }
 }

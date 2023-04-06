@@ -1,0 +1,42 @@
+﻿@model KDKmusicWebsite.Models.Artist
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa nghệ sĩ</h2>
+
+<h3>Bạn có chắc chắn muốn xóa nghệ sĩ này không?</h3>
+<div>
+    <h4>Artist</h4>
+    <hr />
+    <div class="container text-center">
+        <h4>Artist</h4>
+        <hr />
+        <img src="@Url.Content(Model.Artist_Image)" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
+        <h6>Tên: @Html.DisplayFor(Model => Model.Artist_Name)</h6>
+        <p>Quốc gia: @Html.DisplayFor(Model => Model.Country.Country_Name)</p>
+        <p>Id nghệ sĩ: @Html.DisplayFor(Model => Model.Artist_Id)</p>
+        <hr />
+        <p class="tab-content">@Html.DisplayFor(Model => Model.Artist_Info)</p>
+    </div>
+    @{
+        int id = Model.Artist_Id;
+    }
+
+    <form action="@Url.Action("DeleteConfirmed", "Admin_Artist", new { artist_id = id })" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-outline-danger">Xóa</button>
+    </form>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Trở lại", "ShowDisplay")
+        </div>
+    }
+</div>

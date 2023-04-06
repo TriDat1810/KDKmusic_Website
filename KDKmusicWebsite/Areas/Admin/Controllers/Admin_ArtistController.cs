@@ -1,21 +1,18 @@
 ﻿using KDKmusicWebsite.Areas.Admin.Extensions;
 using KDKmusicWebsite.Models;
 using PagedList;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace KDKmusicWebsite.Areas.Admin.Controllers
 {
     public class Admin_ArtistController : Controller
     {
         DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+
+        #region ShowDisplay and Details
         // GET: Admin/Admin_Artist
         public ActionResult ShowDisplay(int? page)
         {
@@ -29,30 +26,6 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             return View(showlist.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult DisplayImage(int imageId)
-        {
-            byte[] imageData = null;
-
-            // Kết nối tới database và lấy hình ảnh từ cột Artist_Image theo id của nghệ sĩ
-
-            // Kiểm tra xem hình ảnh có tồn tại không
-            if (imageData != null)
-            {
-                // Chuyển đổi kiểu dữ liệu từ Varbinary(Max) sang Image
-                System.Drawing.Image image = null;
-                using (MemoryStream ms = new MemoryStream(imageData))
-                {
-                    image = System.Drawing.Image.FromStream(ms);
-                }
-
-                // Trả về hình ảnh dưới dạng FileResult
-                return File(imageData, "image/jpeg"); //hoặc "image/png" nếu là định dạng png
-            }
-
-            // Trả về 404 Not Found nếu không tìm thấy hình ảnh
-            return HttpNotFound();
-        }
-
         public ActionResult Details(int id)
         {
             var showlist = data.Artists.FirstOrDefault(data => data.Artist_Id == id);
@@ -62,7 +35,9 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             }
             return View(showlist);
         }
+        #endregion
 
+        #region Create
         public ActionResult Create()
         {
             ViewBag.CountryList = new SelectList(data.Countries.OrderBy(c => c.Country_Name), "Country_Id", "Country_Name");
@@ -113,7 +88,92 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             return View(model);
         }
 
+        #endregion
 
+        #region Edit
+        public ActionResult Edit(int id)
+        {
+            Artist artist = data.Artists.SingleOrDefault(a => a.Artist_Id == id);
 
+            if (artist == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.CountryList = new SelectList(data.Countries.OrderBy(c => c.Country_Name), "Country_Id", "Country_Name", artist.Country_Id);
+
+            return View(artist);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Artist model, HttpPostedFileBase fileUpLoad)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var artist = data.Artists.SingleOrDefault(c => c.Artist_Id == model.Artist_Id);
+            if (artist == null)
+            {
+                return HttpNotFound();
+            }
+
+            artist.Artist_Name = model.Artist_Name;
+            artist.Artist_Info = model.Artist_Info;
+            artist.Country_Id = model.Country_Id;
+
+            if (fileUpLoad != null && fileUpLoad.ContentLength > 0)
+            {
+                if (ImageExtensions.IsImage(fileUpLoad))
+                {
+                    var fileName = Path.GetFileName(fileUpLoad.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
+                    fileUpLoad.SaveAs(path);
+                    artist.Artist_Image = "~/Assets/Mine/images/" + fileName;
+                }
+                else
+                {
+                    ModelState.AddModelError("fileUpLoad", "Please upload an image file.");
+                    ViewBag.CountryList = new SelectList(data.Countries.OrderBy(c => c.Country_Name), "Country_Id", "Country_Name", artist.Country_Id);
+                    return View(artist);
+                }
+            }
+
+            data.SubmitChanges();
+            return RedirectToAction("ShowDisplay");
+        }
+        #endregion
+
+        #region DELETE
+        public ActionResult Delete(int id)
+        {
+            var artist = data.Artists.FirstOrDefault(c => c.Artist_Id == id);
+
+            if (artist == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(artist);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int artist_id)
+        {
+            var artist = data.Artists.FirstOrDefault(c => c.Artist_Id == artist_id);
+
+            if (artist == null)
+            {
+                return HttpNotFound();
+            }
+
+            data.Artists.DeleteOnSubmit(artist);
+            data.SubmitChanges();
+            return RedirectToAction("ShowDisplay");
+        }
+        #endregion
     }
 }
