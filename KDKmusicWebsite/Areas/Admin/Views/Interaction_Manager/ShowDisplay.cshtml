@@ -1,0 +1,74 @@
+﻿@using KDKmusicWebsite.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<KDKmusicWebsite.Models.Interaction>
+
+@{
+    ViewBag.Title = "ShowDisplay";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center">
+    <center style="margin: 5px auto"><h2 style="font-style: inherit;">XEM TƯƠNG TÁC</h2></center>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Lượt thích")
+            </th>
+            <th>
+                @Html.DisplayName("Lượt nghe")
+            </th>
+            <th>
+                @Html.DisplayName("Người nghe")
+            </th>
+            <th>
+                @Html.DisplayName("Bài hát")
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Liked)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Play_Count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.User_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song.Song_Name)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        <div class="pager">
+            @if (Model.PageCount > 1)
+            {
+                <ul>
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber - 1 })">Previous</a></li>
+                    }
+
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="@(i == Model.PageNumber ? "active" : "")"><a href="@Url.Action("ShowDisplay", new { page = i })">@i</a></li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber + 1 })">Next</a></li>
+                    }
+                </ul>
+            }
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model KDKmusicWebsite.Models.Song
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Thêm thông tin bài hát mới</h2></center>
+
+
+@using (Html.BeginForm("Create", "Admin_Music", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Tên bài hát")
+            @Html.TextBoxFor(model => model.Song_Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Song_Name)
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Tên nghệ sĩ")
+            @Html.DropDownListFor(model => model.Artist_Id, (SelectList)ViewBag.ArtistList, "Chọn nghệ sĩ", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Artist_Id)
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Thuộc Albums")
+            @Html.DropDownListFor(model => model.Album_Id, (SelectList)ViewBag.AlbumList, "Chọn Album", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Album_Id)
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Thuộc thể loại")
+            @Html.DropDownListFor(model => model.Genre_Id, (SelectList)ViewBag.GenreList, "Chọn thể loại", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Genre_Id)
+        </div>
+
+        <div class="form-group">
+            @Html.Label("File hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
+            <img id="imgPreview" src="#" alt="Preview Image" />
+            <div class="col-md-10">
+                <input type="file" name="songImageFile" id="fileUpLoad" accept="image/jpeg, image/png, image/jpeg" onchange="previewImage();" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("File nhạc mp3", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="songFile" id="songFile" accept="audio/mp3" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Lyrics)
+            @Html.TextAreaFor(model => model.Lyrics, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Lyrics)
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ShowDisplay")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Assets/Mine/js/main.js")
+}

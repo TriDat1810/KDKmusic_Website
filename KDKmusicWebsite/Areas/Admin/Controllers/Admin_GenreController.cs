@@ -22,7 +22,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             //Tạo biến số trang;
             int pageNumber = (page ?? 1);
 
-            //Lấy top 1 Country
+            //Lấy top Country
             var showlist = data.Music_Genres.OrderBy(c => c.Genre_Name);
             return View(showlist.ToPagedList(pageNumber, pageSize));
         }

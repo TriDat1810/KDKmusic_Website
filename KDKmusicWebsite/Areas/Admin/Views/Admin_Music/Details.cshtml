@@ -1,0 +1,26 @@
+﻿@model KDKmusicWebsite.Models.Song
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container text-center">
+    <h4>Artist</h4>
+    <hr />
+    <img src="@Url.Content(Model.Song_Image)" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
+    <h6>Tên bài hát: @Html.DisplayFor(Model => Model.Song_Name)</h6>
+    <p>Thuộc album (nếu có): @Html.DisplayFor(Model => Model.Album.Album_Name)</p>
+    <p>Thuộc thể loại (nếu có): @Html.DisplayFor(Model => Model.Music_Genre.Genre_Name)</p>
+    <p>Tên nghệ sĩ: @Html.DisplayFor(Model => Model.Artist.Artist_Name)</p>
+    <br />
+    <audio controls preload="metadata">
+        <source src="@Url.Content(Model.Song_Path)"/>
+    </audio>
+    <hr />
+    <p class="tab-content">@Html.DisplayFor(Model => Model.Lyrics)</p>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Song_Id }) |
+    @Html.ActionLink("Trở lại", "ShowDisplay")
+</p>

@@ -1,0 +1,126 @@
+﻿@using KDKmusicWebsite.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<KDKmusicWebsite.Models.Song>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<p>...</p>
+    }
+}
+
+@{
+    ViewBag.Title = "ShowDisplay";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<center><h2>Thông tin bài hát</h2></center>
+
+<div class="container text-center">
+    <p>
+        @Html.ActionLink("Tạo mới", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Tên bài hát")
+            </th>
+            <th>
+                @Html.DisplayName("Mã bài hát")
+            </th>
+            <th>
+                @Html.DisplayName("Thuộc thể loại")
+            </th>
+            <th>
+                @Html.DisplayName("Người sáng tác")
+            </th>
+            <th>
+                @Html.DisplayName("Hình ảnh")
+            </th>
+            <th>
+                @Html.DisplayName("File nhạc")
+            </th>
+            <th>
+                @Html.DisplayName("Lời bài hát")
+            </th>
+            <th>
+                @Html.DisplayName("Ngày thêm bài")
+            </th>
+            <th>
+                @Html.DisplayName("Thuộc album (nếu có)")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Song_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Music_Genre.Genre_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist.Artist_Name)
+                </td>
+                <td>
+                    <img src="@Url.Content(item.Song_Image)" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
+                </td>
+                <td>
+                    <audio controls id="music" preload="metadata">
+                        <source src="@Url.Content(item.Song_Path)" type="audio/mp3" />
+                    </audio>
+                </td>
+                <td>
+                    @Truncate(item.Lyrics, 100)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Create_at)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Album.Album_Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Song_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Song_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Song_Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        <div class="pager">
+            @if (Model.PageCount > 1)
+            {
+                <ul>
+                    @if (Model.HasPreviousPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber - 1 })">Previous</a></li>
+                    }
+
+                    @for (int i = 1; i <= Model.PageCount; i++)
+                    {
+                        <li class="@(i == Model.PageNumber ? "active" : "")"><a href="@Url.Action("ShowDisplay", new { page = i })">@i</a></li>
+                    }
+
+                    @if (Model.HasNextPage)
+                    {
+                        <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber + 1 })">Next</a></li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>

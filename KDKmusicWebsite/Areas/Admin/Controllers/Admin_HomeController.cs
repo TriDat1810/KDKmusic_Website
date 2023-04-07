@@ -9,6 +9,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
     public class Admin_HomeController : Controller
     {
         // GET: Admin/Admin_Home
+        //[Authorize(Roles = "Admin")]
         public ActionResult AdminIndex()
         {
             return View();

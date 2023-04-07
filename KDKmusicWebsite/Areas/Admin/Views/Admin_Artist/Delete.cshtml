@@ -9,7 +9,6 @@
 
 <h3>Bạn có chắc chắn muốn xóa nghệ sĩ này không?</h3>
 <div>
-    <h4>Artist</h4>
     <hr />
     <div class="container text-center">
         <h4>Artist</h4>
@@ -24,19 +23,13 @@
     @{
         int id = Model.Artist_Id;
     }
+    <div class="form-actions no-color">
+        <form action="@Url.Action("DeleteConfirmed", "Admin_Artist", new { artist_id = id })" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-outline-danger" style="margin: 10px;">Xóa</button>
+        </form>
 
-    <form action="@Url.Action("DeleteConfirmed", "Admin_Artist", new { artist_id = id })" method="post">
-        @Html.AntiForgeryToken()
-        <button type="submit" class="btn btn-outline-danger">Xóa</button>
-    </form>
+        <a href="@Url.Action("ShowDisplay")" class="btn btn-outline-light text-decoration-none">Trở lại</a>
+    </div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Trở lại", "ShowDisplay")
-        </div>
-    }
 </div>

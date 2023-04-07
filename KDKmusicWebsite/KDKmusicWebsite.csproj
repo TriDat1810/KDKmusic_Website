@@ -173,11 +173,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Admin_MusicController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_ArtistController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_GenreController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_CountryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Interaction_ManagerController.cs" />
     <Compile Include="Areas\Admin\Extensions\ImageExtensions.cs" />
+    <Compile Include="Areas\Admin\Extensions\MP3Extesions.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1879,6 +1882,8 @@
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.js" />
     <Content Include="Assets\Admin\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Assets\Mine\css\style.css" />
+    <Content Include="Assets\Mine\imagesForSong\Alan_Walker_-_Faded.png" />
+    <Content Include="Assets\Mine\imagesForSong\New_Jeans_%28EP%29.jpg" />
     <Content Include="Assets\Mine\images\Alan_Walker.jpg" />
     <Content Include="Assets\Mine\images\NewJeans.jpg" />
     <Content Include="Assets\Mine\js\main.js" />
@@ -2144,6 +2149,13 @@
     </Content>
     <Content Include="Areas\Admin\Views\Admin_Artist\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Artist\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Interaction_Manager\ShowDisplay.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Music\ShowDisplay.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutWithoutLogin.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Music\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Music\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Music\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Music\Delete.cshtml" />
     <None Include="Models\DBkdkMusicModel.dbml.layout">
       <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
     </None>
@@ -2184,6 +2196,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\AdminMusic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

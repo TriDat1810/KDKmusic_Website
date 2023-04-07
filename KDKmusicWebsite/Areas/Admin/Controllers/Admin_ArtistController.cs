@@ -53,29 +53,32 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             {
                 if (fileUpLoad != null && fileUpLoad.ContentLength > 0)
                 {
-                    if (ImageExtensions.IsImage(fileUpLoad))
+                    var artist = new Artist
                     {
-                        var artist = new Artist
-                        {
-                            Artist_Name = model.Artist_Name,
-                            Artist_Info = model.Artist_Info,
-                            Country_Id = model.Country_Id
-                        };
+                        Artist_Name = model.Artist_Name,
+                        Artist_Info = model.Artist_Info,
+                        Country_Id = model.Country_Id
+                    };
 
-                        var fileName = Path.GetFileName(fileUpLoad.FileName);
-                        var path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
-                        fileUpLoad.SaveAs(path);
-                        artist.Artist_Image = "~/Assets/Mine/images/" + fileName;
+                    var fileName = Path.GetFileName(fileUpLoad.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
 
-                        data.Artists.InsertOnSubmit(artist);
-                        data.SubmitChanges();
-
-                        return RedirectToAction("ShowDisplay");
-                    }
-                    else
+                    var fileCount = 1;
+                    //Kiểm tra sự tồn tại của file
+                    while (System.IO.File.Exists(path))
                     {
-                        ModelState.AddModelError("fileUpLoad", "Please upload an image file.");
+                        fileName = Path.GetFileNameWithoutExtension(fileUpLoad.FileName) + "-" + fileCount.ToString() + Path.GetExtension(fileUpLoad.FileName);
+                        path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
+                        fileCount++;
                     }
+
+                    fileUpLoad.SaveAs(path);
+                    artist.Artist_Image = "~/Assets/Mine/images/" + fileName;
+
+                    data.Artists.InsertOnSubmit(artist);
+                    data.SubmitChanges();
+
+                    return RedirectToAction("ShowDisplay");
                 }
                 else
                 {
@@ -83,7 +86,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                 }
             }
 
-            ViewBag.CountryList = new SelectList(data.Countries, "Country_Id", "Country_Name", model.Country_Id);
+            ViewBag.CountryList = new SelectList(data.Countries.OrderBy(c => c.Country_Name), "Country_Id", "Country_Name", model.Country_Id);
 
             return View(model);
         }
@@ -109,29 +112,47 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Artist model, HttpPostedFileBase fileUpLoad)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(model);
-            }
+                var artist = data.Artists.SingleOrDefault(c => c.Artist_Id == model.Artist_Id);
+                if (artist == null)
+                {
+                    return HttpNotFound();
+                }
 
-            var artist = data.Artists.SingleOrDefault(c => c.Artist_Id == model.Artist_Id);
-            if (artist == null)
-            {
-                return HttpNotFound();
-            }
+                artist.Artist_Name = model.Artist_Name;
+                artist.Artist_Info = model.Artist_Info;
+                artist.Country_Id = model.Country_Id;
 
-            artist.Artist_Name = model.Artist_Name;
-            artist.Artist_Info = model.Artist_Info;
-            artist.Country_Id = model.Country_Id;
-
-            if (fileUpLoad != null && fileUpLoad.ContentLength > 0)
-            {
-                if (ImageExtensions.IsImage(fileUpLoad))
+                if (fileUpLoad != null && fileUpLoad.ContentLength > 0)
                 {
                     var fileName = Path.GetFileName(fileUpLoad.FileName);
                     var path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
+
+                    //Xóa file cũ trước đó
+                    if (!string.IsNullOrEmpty(artist.Artist_Image))
+                    {
+                        var oldImagePath = Server.MapPath(artist.Artist_Image);
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    var fileCount = 1;
+                    //Kiểm tra sự tồn tại của file
+                    while (System.IO.File.Exists(path))
+                    {
+                        fileName = Path.GetFileNameWithoutExtension(fileUpLoad.FileName) + "-" + fileCount.ToString() + Path.GetExtension(fileUpLoad.FileName);
+                        path = Path.Combine(Server.MapPath("~/Assets/Mine/images/"), fileName);
+                        fileCount++;
+                    }
+
                     fileUpLoad.SaveAs(path);
                     artist.Artist_Image = "~/Assets/Mine/images/" + fileName;
+
+                    data.SubmitChanges();
+                    return RedirectToAction("ShowDisplay");
                 }
                 else
                 {
@@ -140,9 +161,8 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                     return View(artist);
                 }
             }
-
-            data.SubmitChanges();
-            return RedirectToAction("ShowDisplay");
+            ViewBag.CountryList = new SelectList(data.Countries.OrderBy(c => c.Country_Name), "Country_Id", "Country_Name", model.Country_Id);
+            return View(model);
         }
         #endregion
 
@@ -170,10 +190,29 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                 return HttpNotFound();
             }
 
+            //Xóa file tồn tại trong project
+            if (!string.IsNullOrEmpty(artist.Artist_Image))
+            {
+                var songFilePath = Server.MapPath(artist.Artist_Image);
+                if (System.IO.File.Exists(songFilePath))
+                {
+                    System.IO.File.Delete(songFilePath);
+                }
+            }
+
             data.Artists.DeleteOnSubmit(artist);
             data.SubmitChanges();
             return RedirectToAction("ShowDisplay");
         }
         #endregion
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                data.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

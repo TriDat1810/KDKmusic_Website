@@ -82,7 +82,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         public ActionResult Logoff()
         {
             Session.Clear();
-            return RedirectToAction("AdminIndex", "Admin_Home");
+            return RedirectToAction("Login", "AdminLogin");
         }
         #endregion
 

@@ -21,7 +21,7 @@
         @Html.Label("Hình ảnh", htmlAttributes: new { @class = "control-label col-md-2" })
         <br />
         <img id="imgPreview" src="#" alt="Preview Image" />
-        <input type="file" id="fileUpLoad" name="fileUpLoad" class="form-control" onchange="previewImage();" />
+        <input type="file" id="fileUpLoad" name="fileUpLoad" class="form-control" accept="image/jpeg, image/png, image/jpeg" onchange="previewImage();" />
         @Html.ValidationMessageFor(model => model.Artist_Image, "", new { @class = "text-danger" })
     </div>
 

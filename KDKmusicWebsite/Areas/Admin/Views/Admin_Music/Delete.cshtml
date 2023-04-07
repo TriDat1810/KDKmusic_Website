@@ -1,0 +1,40 @@
+﻿@model KDKmusicWebsite.Models.Song
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa bài hát</h2>
+
+<h3>Bạn có chắc chắn muốn xóa bài hát này không?</h3>
+<div>
+    <hr />
+    <div class="container text-center">
+        <h4>Artist</h4>
+        <hr />
+        <img src="@Url.Content(Model.Song_Image)" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
+        <h6>Tên: @Html.DisplayFor(Model => Model.Song_Name)</h6>
+        <p>thể loại: @Html.DisplayFor(Model => Model.Music_Genre.Genre_Name)</p>
+        <p>id: @Html.DisplayFor(Model => Model.Song_Id)</p>
+        <p>nghệ sĩ trình bày: @Html.DisplayFor(Model => Model.Artist.Artist_Name)</p>
+        <p>Thuộc albums (nếu có): @Html.DisplayFor(Model => Model.Album.Album_Name)</p>
+        <audio controls id="music" preload="metadata">
+            <source src="@Url.Content(Model.Song_Path)" type="audio/mp3" />
+        </audio>
+        <hr />
+        <p class="tab-content">@Html.DisplayFor(Model => Model.Lyrics)</p>
+    </div>
+    @{
+        int id = Model.Song_Id;
+    }
+
+    <div class="form-actions no-color">
+        <form action="@Url.Action("DeleteConfirmed", "Admin_Music", new { song_id = id })" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-outline-danger" style="margin: 10px;">Xóa</button>
+        </form>
+
+        <a href="@Url.Action("ShowDisplay")" class="btn btn-outline-light text-decoration-none">Trở lại</a>
+    </div>
+</div>
