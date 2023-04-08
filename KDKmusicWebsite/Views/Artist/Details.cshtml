@@ -51,8 +51,8 @@
         <header>
             <h1>@Model.Artist_Name</h1>
         </header>
-        <div class="contentDetails">
-            <img src="https://www.billboard.com/files/styles/article_main_image/public/media/charlie-puth-2017-grammys-red-carpet-billboard-1548.jpg" alt="Charlie Puth">
+        <div class="contentDetails container text-center">
+            <img src="@Url.Content(Model.Artist_Image)" title="@Url.Content(Model.Artist_Name)">
             <p>@Model.Artist_Info</p>
             <a href="#" class="btn">Xem One Call Away</a>
             <a href="#" class="btn">Xem Attention</a>
@@ -60,6 +60,6 @@
         </div>
     </div>
     <p>
-        @Html.ActionLink("Back to List", "ShowDisplay")
+        @Html.ActionLink("Trở lại", "ShowDisplay")
     </p>
 </main>
