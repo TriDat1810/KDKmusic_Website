@@ -172,6 +172,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Controllers\AddPlaylistController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_MusicController.cs" />
@@ -198,6 +199,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ThemPlaylist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2197,10 +2199,15 @@
     <Content Include="Views\Genre\ShowDisplay.cshtml" />
     <Content Include="Views\Music\ShowDisplayByArtist.cshtml" />
     <Content Include="Views\Search\SearchForSong.cshtml" />
+    <Content Include="Views\AddPlaylist\AddMusictoPlaylist.cshtml" />
+    <Content Include="Views\AddPlaylist\CreatePlaylist.cshtml" />
+    <Content Include="Views\AddPlaylist\ShowPlaylists.cshtml" />
+    <Content Include="Views\AddPlaylist\ShowPlaylistsSong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\AddPlaylist\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

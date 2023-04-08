@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "CreatePlaylist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreatePlaylist</h2>
+
+<div class="container text-center">
+    @using (Html.BeginForm("CreatePlaylist", "Addplaylist", FormMethod.Post))
+    {
+        <div>
+            <label>Playlist Name:</label>
+            <input type="text" id="playlistName" name="playlistName" />
+            @ViewData["Loi"]
+        </div>
+
+        <input type="submit" value="Create Playlist" />
+    }
+</div>

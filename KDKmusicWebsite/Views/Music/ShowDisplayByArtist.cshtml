@@ -1,4 +1,17 @@
 ﻿@model IEnumerable<KDKmusicWebsite.Models.Song>
+@using KDKmusicWebsite.Models
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<p>...</p>
+    }
+}
 
 @{
     ViewBag.Title = "ShowDisplayByArtist";
@@ -25,6 +38,11 @@
     }
 </style>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"].ToString()</div>
+}
+
 <main>
     @foreach (var item in Model)
     {
@@ -50,6 +68,21 @@
                         <audio controls id="music" preload="metadata">
                             <source src="@Url.Content(item.Song_Path)" type="audio/mpeg">
                         </audio>
+                        <!-- Kiểm tra xem người dùng đã đăng nhập hay chưa -->
+                        @if (Session["User"] != null)
+                        {
+                            <!-- Nếu đã đăng nhập, hiển thị nút tải và thêm danh sách -->
+                            <a href="@Url.Action("AddMusic", "AddPlaylist", new {@iSong_Id = item.Song_Id, @strUrl = Request.Url.ToString() })" class="btn btn-primary">Thêm danh sách</a>
+                        }
+                        else
+                        {
+                            <!-- Nếu chưa đăng nhập, hiển thị nút đăng nhập -->
+                            <a href="@Url.Action("AddMusic", "AddPlaylist", new {@iSong_Id = item.Song_Id, @strUrl = Request.Url.ToString() })" class="btn btn-primary">Thêm danh sách</a>
+                        }
+                        <!-- Khung hiển thị lời bài hát -->
+                        <div class="lyrics-container">
+                            <p class="lyrics">@Truncate(item.Lyrics, 100)</p>
+                        </div>
                     </div>
                 </div>
                 <!-- Card -->
