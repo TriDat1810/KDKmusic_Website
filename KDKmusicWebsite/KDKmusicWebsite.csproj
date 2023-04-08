@@ -173,12 +173,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Admin_ManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_MusicController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_ArtistController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_GenreController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_CountryController.cs" />
     <Compile Include="Areas\Admin\Controllers\Interaction_ManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\User_ManagerController.cs" />
+    <Compile Include="Areas\Admin\Extensions\EncryptPassword.cs" />
     <Compile Include="Areas\Admin\Extensions\ImageExtensions.cs" />
     <Compile Include="Areas\Admin\Extensions\MP3Extesions.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
@@ -1898,17 +1901,6 @@
     <Content Include="Assets\User\icon-fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\User\img\hero-bg.png" />
     <Content Include="Assets\User\img\how-to-bg.jpg" />
-    <Content Include="Assets\User\img\icons\back.png" />
-    <Content Include="Assets\User\img\icons\brain.png" />
-    <Content Include="Assets\User\img\icons\check-icon.png" />
-    <Content Include="Assets\User\img\icons\next.png" />
-    <Content Include="Assets\User\img\icons\p-1.png" />
-    <Content Include="Assets\User\img\icons\p-2.png" />
-    <Content Include="Assets\User\img\icons\p-3.png" />
-    <Content Include="Assets\User\img\icons\pause.png" />
-    <Content Include="Assets\User\img\icons\play.png" />
-    <Content Include="Assets\User\img\icons\pointer.png" />
-    <Content Include="Assets\User\img\icons\smartphone.png" />
     <Content Include="Assets\User\img\premium\1.jpg" />
     <Content Include="Assets\User\img\premium\2.jpg" />
     <Content Include="Assets\User\img\premium\3.jpg" />
@@ -2156,6 +2148,13 @@
     <Content Include="Areas\Admin\Views\Admin_Music\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Music\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Music\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\User_Manager\ShowDisplay.cshtml" />
+    <Content Include="Areas\Admin\Views\User_Manager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User_Manager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Manager\ShowDisplay.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Manager\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Manager\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Manager\Edit.cshtml" />
     <None Include="Models\DBkdkMusicModel.dbml.layout">
       <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
     </None>
@@ -2196,7 +2195,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\AdminMusic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

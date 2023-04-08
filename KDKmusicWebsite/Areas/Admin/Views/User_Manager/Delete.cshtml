@@ -1,0 +1,34 @@
+﻿@model KDKmusicWebsite.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .myContainer {
+        min-height: 330px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<div class="container text-center myContainer">
+    <div>
+        <h2>Xác nhận xóa người dùng</h2>
+
+        <p>Bạn có chắc chắn muốn xóa người dùng <strong>@Model.User_name</strong> không?</p>
+
+        @using (Html.BeginForm("DeleteConfirmed", "User_Manager", new { id = Model.User_Id }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Xóa</button>
+                <a href="@Url.Action("ShowDisplay")" class="btn btn-default"><i class="glyphicon glyphicon-remove"></i> Hủy</a>
+            </div>
+        }
+    </div>
+</div>
+

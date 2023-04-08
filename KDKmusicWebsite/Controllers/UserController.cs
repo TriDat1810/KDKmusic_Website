@@ -152,7 +152,7 @@ namespace KDKmusicWebsite.Controllers
             }
             else
             {
-                User user = data.Users.SingleOrDefault(n => n.User_name == taikhoan && n.Password == matkhau);
+                User user = data.Users.SingleOrDefault(n => n.User_name == taikhoan && n.Password == mahoamd5(matkhau));
                 if (user != null)
                 {
                     Session["User"] = user;
@@ -246,7 +246,7 @@ namespace KDKmusicWebsite.Controllers
                 var user = new User();
                 user.User_name = email;
                 user.E_mail = email;
-                user.Password = email;
+                user.Password = mahoamd5(email);
                 var insertResurt = InsertForFacebook(user);
                 if (insertResurt > 0)
                 {
