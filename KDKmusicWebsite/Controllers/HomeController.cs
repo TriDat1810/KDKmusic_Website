@@ -9,7 +9,7 @@ namespace KDKmusicWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
         public ActionResult Index()
         {
             return View();

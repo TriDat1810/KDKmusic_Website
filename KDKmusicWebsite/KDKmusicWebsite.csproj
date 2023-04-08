@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KDKmusicWebsite</RootNamespace>
     <AssemblyName>KDKmusicWebsite</AssemblyName>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,6 +93,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -104,11 +106,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -153,6 +152,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -178,6 +178,7 @@
     <Compile Include="Areas\Admin\Controllers\Admin_HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\Admin_CountryController.cs" />
     <Compile Include="Areas\Admin\Extensions\ImageExtensions.cs" />
+    <Compile Include="Controllers\AddPlaylistController.cs" />
     <Compile Include="Controllers\ArtistController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -187,11 +188,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBkdkMusicModel.designer.cs">
+    <Compile Include="Models\DBkdkMusicContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
+      <DependentUpon>DBkdkMusicContext.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ThemPlayList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2136,13 +2138,13 @@
     <Content Include="Areas\Admin\Views\Admin_Artist\ShowDisplay.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Artist\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Artist\Create.cshtml" />
-    <Content Include="Models\DBkdkMusicModel.dbml">
+    <Content Include="Models\DBkdkMusicContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DBkdkMusicModel.designer.cs</LastGenOutput>
+      <LastGenOutput>DBkdkMusicContext.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Models\DBkdkMusicModel.dbml.layout">
-      <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
+    <None Include="Models\DBkdkMusicContext.dbml.layout">
+      <DependentUpon>DBkdkMusicContext.dbml</DependentUpon>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2177,6 +2179,10 @@
     <Content Include="Views\Genre\ShowDisplay.cshtml" />
     <Content Include="Views\Music\ShowDisplayByArtist.cshtml" />
     <Content Include="Views\Search\SearchForSong.cshtml" />
+    <Content Include="Views\AddPlaylist\AddMusictoPlaylist.cshtml" />
+    <Content Include="Views\AddPlaylist\ShowPlaylists.cshtml" />
+    <Content Include="Views\AddPlaylist\CreatePlaylist.cshtml" />
+    <Content Include="Views\AddPlaylist\ShowPlaylistsSong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

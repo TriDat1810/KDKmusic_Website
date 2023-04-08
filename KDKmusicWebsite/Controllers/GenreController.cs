@@ -11,7 +11,7 @@ namespace KDKmusicWebsite.Controllers
 {
     public class GenreController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
         // GET: Genre
         public ActionResult ShowDisplay()
         {

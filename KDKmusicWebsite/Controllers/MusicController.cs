@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Xml.Linq;
 
@@ -13,7 +14,7 @@ namespace KDKmusicWebsite.Controllers
 {
     public class MusicController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
 
         // Hiển thị các bài hát có id theo thể loại nhạc hoặc hiển thị tất cả nếu id của thể loại nhạc là null
         public ActionResult ShowDisplay(int? Genre_id)
@@ -45,5 +46,7 @@ namespace KDKmusicWebsite.Controllers
             }
             return null;
         }
+
+  
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KDKmusicWebsite.Models.User>
+﻿@model KDKmusicWebsite.Models.User
 
 @if (Session["User"] != null)
 {
@@ -8,6 +8,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:0px 10px">@Session["User_name"]</a>
             <ul class="dropdown-menu">
                 <li><a style="color: #3498db;" href="#">Thông tin tài khoản</a></li>
+                <li><a style="color: #3498db;" href="@Url.Action("ShowPlaylists", "AddPlaylist")">Danh sách nhạc của bạn</a></li>
                 <li>
                     <hr>
                     <p id="logout" style=" text-align: center; margin:0;"><a style="color: #3498db;" href="@Url.Action("Logoff", "User", null, Request.Url.Scheme)">Đăng xuất</a></p>
@@ -15,8 +16,6 @@
             </ul>
         </li>
     </ul>
-
-
 }
 else
 {

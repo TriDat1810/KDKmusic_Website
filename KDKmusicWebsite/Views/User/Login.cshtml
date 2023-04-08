@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
 {
     <div class="container">
         <!-- Invalid Login -->

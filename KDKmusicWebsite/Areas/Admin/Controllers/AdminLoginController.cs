@@ -11,7 +11,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
 {
     public class AdminLoginController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
 
         // GET: Admin/AdminLogin
         static string GetMd5Hash(MD5 md5Hash, string input)

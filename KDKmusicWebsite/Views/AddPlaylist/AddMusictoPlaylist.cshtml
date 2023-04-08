@@ -1,0 +1,86 @@
+﻿@using KDKmusicWebsite.Models
+@model List<ThemPlayList>
+
+@{
+    ViewBag.Title = "AddMusictoPlaylist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách nhạc tạm thời của bạn</h2>
+
+
+<style>
+    main {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    @@media(max-width: 768px) {
+        main {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media(max-width: 480px) {
+        main {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"].ToString()</div>
+}
+<main>
+    @foreach (var item in Model)
+    {
+        <!-- Content -->
+        <div class="container d-flex justify-content-center my-4 mb-5">
+
+            <div id="mobile-box">
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img class="card-img-top" src="@item.sSong_Image"
+                             alt="Card image cap">
+                        <a href="#!">
+                            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                        </a>
+                    </div>
+                    <div class="card-body text-center">
+
+                        <h5 class="h5 font-weight-bold"><a href="#" target="_blank">@item.sArtis_Mame</a></h5>
+                        <p class="mb-0">@item.sSong_Name</p>
+
+                        <audio controls id="music" preload="metadata">
+                            <source src="@Url.Content(item.sSong_Path)" type="audio/mp3" />
+                        </audio>
+
+                    </div>
+                    <div style="text-align:center;">
+                        <a href="@Url.Action("delMusic","AddPlaylist", new { @i1Song_id = item.iSong_Id })" class="btn btn-primary">Xóa</a>
+                        <a href="@Url.Action("delMusic","AddPlaylist", new { @i1Song_id = item.iSong_Id })" class="btn btn-primary">Xem lời bài hát</a>
+
+                    </div>
+
+                </div>
+                <!-- Card -->
+            </div>
+        </div>
+        <!-- Content -->
+    }
+
+</main>
+<div style="text-align:center;">
+    <a href="@Url.Action("delallMusic","AddPlaylist")" class="btn btn-primary">Xóa tất cả</a>
+    @if (Session["User"] != null)
+    {
+        <a href="@Url.Action("CreatePlaylist", "AddPlaylist")" class="btn btn-primary">Lưu</a>
+    }
+    else
+    {
+        <a href="@Url.Action("Login", "User")" class="btn btn-primary">Lưu</a>
+    }
+</div>

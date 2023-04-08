@@ -10,7 +10,7 @@ namespace KDKmusicWebsite.Controllers
 {
     public class SearchController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
 
         //Tìm kiếm theo tên bài hát hoặc tên nghệ sĩ
         public ActionResult SearchForSong(string name)

@@ -12,7 +12,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
 {
     public class Admin_CountryController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
 
         // GET: Admin/Admin_Country
         public ActionResult ShowDisplay(int? page)

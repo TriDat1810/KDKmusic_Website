@@ -11,7 +11,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
 {
     public class Admin_GenreController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
         // GET: Admin/Admin_Genre
         public ActionResult ShowDisplay(int? page)
         {

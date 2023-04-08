@@ -13,7 +13,7 @@ namespace KDKmusicWebsite.Controllers
 {
     public class UserController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
         // GET: User
         private string mahoamd5(string input)
         {
@@ -139,7 +139,7 @@ namespace KDKmusicWebsite.Controllers
             }
             else
             {
-                User user = data.Users.SingleOrDefault(n => n.User_name == taikhoan && n.Password == matkhau);
+                User user = data.Users.SingleOrDefault(n => n.User_name == taikhoan && n.Password == mahoamd5(matkhau));
                 if (user != null)
                 {
                     Session["User"] = user;

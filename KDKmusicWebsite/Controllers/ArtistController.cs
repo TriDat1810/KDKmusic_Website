@@ -9,7 +9,7 @@ namespace KDKmusicWebsite.Controllers
 {
     public class ArtistController : Controller
     {
-        DBkdkMusicModelDataContext data = new DBkdkMusicModelDataContext();
+        DBkdkMusicContextDataContext data = new DBkdkMusicContextDataContext();
         // GET: Artist
         public ActionResult ShowDisplay()
         {
