@@ -245,5 +245,33 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             return RedirectToAction("ShowDisplay");
         }
         #endregion
+
+        #region SEARCHING
+        public ActionResult Search(string searchString, int? page)
+        {
+            if (Session["Admin_User_name"] != null)
+            {
+                string userName = Session["Admin_User_name"].ToString();
+                var check = data.Admins.FirstOrDefault(s => s.User_name == userName);
+                if (check != null)
+                {
+                    var searchName = from s in data.Admins
+                                     select s;
+
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        searchName = searchName.Where(s => s.User_name.Contains(searchString));
+                    }
+
+                    //Tạo biến quy định số sản phẩm trên mới trang
+                    int pageSize = 5;
+                    //Tạo biến số trang;
+                    int pageNumber = (page ?? 1);
+                    return View(searchName.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            return RedirectToAction("Login", "AdminLogin");
+        }
+        #endregion
     }
 }

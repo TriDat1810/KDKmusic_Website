@@ -10,7 +10,13 @@
 
 <div class="container text-center">
     <center style="margin: 5px auto"><h2 style="font-style: inherit;">DANH SÁCH QUỐC GIA</h2></center>
-
+    @using (Html.BeginForm("Search", "Admin_Genre"))
+    {
+        <p>
+            @Html.TextBox("searchString", null, new { placeholder = "Nhập từ khóa tìm kiếm" })
+            <input type="submit" value="Tìm kiếm" />
+        </p>
+    }
     <a href="@Url.Action("Create")" class="btn">Thêm mới</a>
 
     <table class="table">
@@ -22,7 +28,7 @@
             <th></th>
         </tr>
 
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>

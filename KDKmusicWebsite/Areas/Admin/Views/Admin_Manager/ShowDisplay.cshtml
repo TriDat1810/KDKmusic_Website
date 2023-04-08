@@ -9,7 +9,13 @@
 
 <div class="container text-center">
     <h2>Hiển thị danh sách quản trị viên</h2>
-
+    @using (Html.BeginForm("Search", "Admin_Manager"))
+    {
+        <p>
+            @Html.TextBox("searchString", null, new { placeholder = "Nhập từ khóa tìm kiếm" })
+            <input type="submit" value="Tìm kiếm" />
+        </p>
+    }
     <p>
         <a href="@Url.Action("Create")" title="Thêm mới"><i class="bi bi-plus-circle"></i></a>
     </p>

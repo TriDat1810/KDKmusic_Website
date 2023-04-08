@@ -1,0 +1,119 @@
+﻿@using KDKmusicWebsite.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<KDKmusicWebsite.Models.Artist>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<p>...</p>
+    }
+}
+
+@{
+    ViewBag.Title = "ShowDisplay";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container text-center">
+    <center><h2>Thông tin nghệ sĩ</h2></center>
+
+    @using (Html.BeginForm("Search", "Admin_Artist"))
+    {
+        <p>
+            @Html.TextBox("searchString", null, new { placeholder = "Nhập từ khóa tìm kiếm" })
+            <input type="submit" value="Tìm kiếm" />
+        </p>
+    }
+
+    @if (Model.Count > 0)
+    {
+
+
+
+        <p>
+            @Html.ActionLink("Tạo mới", "Create")
+        </p>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayName("Tên nghệ sĩ")
+                </th>
+                <th>
+                    @Html.DisplayName("Mã")
+                </th>
+                <th>
+                    @Html.DisplayName("Quốc gia")
+                </th>
+                <th>
+                    @Html.DisplayName("Thông tin")
+                </th>
+                <th>
+                    @Html.DisplayName("Hình ảnh")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Artist_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Artist_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country.Country_Name)
+                    </td>
+                    <td>
+                        @Truncate(item.Artist_Info, 100)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.Artist_Image)" sizes="(max-width: 710px) 120px, (max-width: 991px) 193px, 278px" />
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Artist_Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Artist_Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Artist_Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            <div class="pager">
+                @if (Model.PageCount > 1)
+                {
+                    <ul>
+                        @if (Model.HasPreviousPage)
+                        {
+                            <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber - 1 })">Previous</a></li>
+                        }
+
+                        @for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            <li class="@(i == Model.PageNumber ? "active" : "")"><a href="@Url.Action("ShowDisplay", new { page = i })">@i</a></li>
+                        }
+
+                        @if (Model.HasNextPage)
+                        {
+                            <li><a href="@Url.Action("ShowDisplay", new { page = Model.PageNumber + 1 })">Next</a></li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <p>No results found.</p>
+    }
+</div>

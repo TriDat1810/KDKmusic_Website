@@ -2155,6 +2155,12 @@
     <Content Include="Areas\Admin\Views\Admin_Manager\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Manager\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Admin_Manager\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Artist\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Country\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Genre\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Manager\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin_Music\Search.cshtml" />
+    <Content Include="Areas\Admin\Views\User_Manager\Search.cshtml" />
     <None Include="Models\DBkdkMusicModel.dbml.layout">
       <DependentUpon>DBkdkMusicModel.dbml</DependentUpon>
     </None>

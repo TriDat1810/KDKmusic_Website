@@ -1,6 +1,8 @@
 ﻿using KDKmusicWebsite.Areas.Admin.Extensions;
 using KDKmusicWebsite.Models;
 using PagedList;
+using System;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -212,6 +214,34 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             data.Artists.DeleteOnSubmit(artist);
             data.SubmitChanges();
             return RedirectToAction("ShowDisplay");
+        }
+        #endregion
+
+        #region SEARCHING
+        public ActionResult Search(string searchString, int? page)
+        {
+            if (Session["Admin_User_name"] != null)
+            {
+                string userName = Session["Admin_User_name"].ToString();
+                var check = data.Admins.FirstOrDefault(s => s.User_name == userName);
+                if (check != null)
+                {
+                    var searchName = from s in data.Artists
+                                     select s;
+
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        searchName = searchName.Where(s => s.Artist_Name.Contains(searchString));
+                    }
+
+                    //Tạo biến quy định số sản phẩm trên mới trang
+                    int pageSize = 5;
+                    //Tạo biến số trang;
+                    int pageNumber = (page ?? 1);
+                    return View(searchName.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            return RedirectToAction("Login", "AdminLogin");
         }
         #endregion
 

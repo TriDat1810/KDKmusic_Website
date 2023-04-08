@@ -65,7 +65,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         #region Delele
         public ActionResult Delete(int id)
         {
-            var genre = data.Music_Genres.FirstOrDefault(c => c.Genre_Id== id);
+            var genre = data.Music_Genres.FirstOrDefault(c => c.Genre_Id == id);
 
             if (genre == null)
             {
@@ -111,7 +111,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                Music_Genre genre = data.Music_Genres.SingleOrDefault(c => c.Genre_Id== editedGenre.Genre_Id);
+                Music_Genre genre = data.Music_Genres.SingleOrDefault(c => c.Genre_Id == editedGenre.Genre_Id);
                 if (genre != null)
                 {
                     genre.Genre_Name = editedGenre.Genre_Name;
@@ -127,6 +127,34 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
             {
                 return View(editedGenre);
             }
+        }
+        #endregion
+
+        #region SEARCHING
+        public ActionResult Search(string searchString, int? page)
+        {
+            if (Session["Admin_User_name"] != null)
+            {
+                string userName = Session["Admin_User_name"].ToString();
+                var check = data.Admins.FirstOrDefault(s => s.User_name == userName);
+                if (check != null)
+                {
+                    var searchName = from s in data.Music_Genres
+                                     select s;
+
+                    if (!String.IsNullOrEmpty(searchString))
+                    {
+                        searchName = searchName.Where(s => s.Genre_Name.Contains(searchString));
+                    }
+
+                    //Tạo biến quy định số sản phẩm trên mới trang
+                    int pageSize = 5;
+                    //Tạo biến số trang;
+                    int pageNumber = (page ?? 1);
+                    return View(searchName.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            return RedirectToAction("Login", "AdminLogin");
         }
         #endregion
     }

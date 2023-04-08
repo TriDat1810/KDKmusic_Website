@@ -156,5 +156,23 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
 
         #endregion
 
+        #region SEARCHING
+        public ActionResult Search(string searchString, int? page)
+        {
+            var searchName = from s in data.Users
+                             select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchName = searchName.Where(s => s.User_name.Contains(searchString));
+            }
+
+            //Tạo biến quy định số sản phẩm trên mới trang
+            int pageSize = 5;
+            //Tạo biến số trang;
+            int pageNumber = (page ?? 1);
+            return View(searchName.ToPagedList(pageNumber, pageSize));
+        }
+        #endregion
     }
 }

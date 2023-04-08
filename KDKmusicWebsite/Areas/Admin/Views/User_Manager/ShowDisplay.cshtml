@@ -10,6 +10,13 @@
 
 <div class="container text-center">
     <center><h2>Hiển thị thông tin người dùng</h2></center>
+    @using (Html.BeginForm("Search", "User_Manager"))
+    {
+        <p>
+            @Html.TextBox("searchString", null, new { placeholder = "Nhập từ khóa tìm kiếm" })
+            <input type="submit" value="Tìm kiếm" />
+        </p>
+    }
     <table class="table">
         <tr>
             <th>

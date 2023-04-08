@@ -9,6 +9,14 @@
 
 <center><h2>Danh sách quốc gia</h2></center>
 <div class="container text-center">
+
+    @using (Html.BeginForm("Search", "Admin_Country"))
+    {
+        <p>
+            @Html.TextBox("searchString", null, new { placeholder = "Nhập từ khóa tìm kiếm" })
+            <input type="submit" value="Tìm kiếm" />
+        </p>
+    }
     <p>
         @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary btnCreate" })
     </p>
