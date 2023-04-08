@@ -3,7 +3,7 @@
 @if (Session["User"] != null)
 {
     <p> <a href="@Url.Action("Logoff", "AdminLogin", null, Request.Url.Scheme)">Đăng xuất</a></p>
-    <a href="#" class="user">@Session["User_name"]</a>
+    <a href="#" class="user">@Session["Admin_User_name"]</a>
 }
 else
 {

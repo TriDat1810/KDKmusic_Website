@@ -4,7 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutWithoutLogin.cshtml";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Login", "AdminLogin", FormMethod.Post))
 {
     <div class="container">
         <!-- Invalid Login -->

@@ -49,14 +49,25 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         #region SHOWDISPLAY
         public ActionResult ShowDisplay(int? page)
         {
-            //Tạo biến quy định số sản phẩm trên mới trang
-            int pageSize = 5;
-            //Tạo biến số trang;
-            int pageNumber = (page ?? 1);
 
-            //Lấy top
-            var showlist = data.Admins.OrderBy(c => c.User_name);
-            return View(showlist.ToPagedList(pageNumber, pageSize));
+
+            if (Session["Admin_User_name"] != null)
+            {
+                string userName = Session["Admin_User_name"].ToString();
+                var check = data.Admins.FirstOrDefault(s => s.User_name == userName);
+                if (check != null)
+                {//Tạo biến quy định số sản phẩm trên mới trang
+                    int pageSize = 5;
+                    //Tạo biến số trang;
+                    int pageNumber = (page ?? 1);
+
+                    //Lấy top
+                    var showlist = data.Admins.OrderBy(c => c.User_name);
+                    return View(showlist.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            return RedirectToAction("Login", "AdminLogin");
+
         }
         #endregion
 

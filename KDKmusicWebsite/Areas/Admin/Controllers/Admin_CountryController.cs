@@ -18,14 +18,23 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
         // GET: Admin/Admin_Country
         public ActionResult ShowDisplay(int? page)
         {
-            //Tạo biến quy định số sản phẩm trên mới trang
-            int pageSize = 5;
-            //Tạo biến số trang;
-            int pageNumber = (page ?? 1);
+            if (Session["Admin_User_name"] != null)
+            {
+                string userName = Session["Admin_User_name"].ToString();
+                var check = data.Admins.FirstOrDefault(s => s.User_name == userName);
+                if (check != null)
+                {
+                    //Tạo biến quy định số sản phẩm trên mới trang
+                    int pageSize = 5;
+                    //Tạo biến số trang;
+                    int pageNumber = (page ?? 1);
 
-            //Lấy top
-            var showlist = data.Countries.OrderBy(c => c.Country_Name);
-            return View(showlist.ToPagedList(pageNumber, pageSize));
+                    //Lấy top
+                    var showlist = data.Countries.OrderBy(c => c.Country_Name);
+                    return View(showlist.ToPagedList(pageNumber, pageSize));
+                }
+            }
+            return RedirectToAction("Login", "AdminLogin");
         }
         #endregion
 

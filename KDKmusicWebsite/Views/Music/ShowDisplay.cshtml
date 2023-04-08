@@ -26,7 +26,7 @@
 </style>
 
 <main>
-    @foreach(var item in Model)
+    @foreach (var item in Model)
     {
         <!-- Content -->
         <div class="container d-flex justify-content-center my-4 mb-5">
@@ -48,21 +48,10 @@
                         <p class="mb-0">@item.Song_Name</p>
 
                         <audio controls id="music" preload="metadata">
-                            <source src="@Url.Content(item.Song_Path)" type="audio/mp3"/>
+                            <source src="@Url.Content(item.Song_Path)" type="audio/mp3" />
                         </audio>
 
-                        <!-- Kiểm tra xem người dùng đã đăng nhập hay chưa -->
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <!-- Nếu đã đăng nhập, hiển thị nút tải -->
-                            <a href="@Url.Action("DownloadSong", "Songs", new { id = item.Song_Id })" class="btn btn-primary">Tải bài hát</a>
 
-                        }
-                        else
-                        {
-                            <!-- Nếu chưa đăng nhập, hiển thị nút đăng nhập -->
-                            <a href="@Url.Action("Login", "User", new { returnUrl = Url.Action("DownloadSong", "Songs", new {id = item.Song_Id}) })" class="btn btn-primary">Đăng nhập để tải bài hát</a>
-                        }
 
                     </div>
                 </div>

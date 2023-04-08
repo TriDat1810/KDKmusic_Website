@@ -64,7 +64,7 @@ namespace KDKmusicWebsite.Areas.Admin.Controllers
                 if (admin != null)
                 {
                     Session["User"] = admin;
-                    Session["User_name"] = admin.User_name;
+                    Session["Admin_User_name"] = admin.User_name;
                     return RedirectToAction("AdminIndex", "Admin_Home");
                 }
                 else if (!checktk(taikhoan))
