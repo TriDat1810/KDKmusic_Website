@@ -49,7 +49,7 @@ namespace KDKmusicWebsite.Controllers
             List<ThemPlayList> lstPlaylist = Layplaylist();
             if (lstPlaylist.Count == 0)
             {
-                TempData["SuccessMessage"] = "Danh sách tạm thời của bạn không có gì!";
+                TempData["SuccessMessage"] = "Danh sách tạm thời của bạn không có gì!\n BẠN HÃY CHỌN BÀI HÁT BẠN MUỐN THÊM VÀO PLAYLIST CỦA BẠN!";
                 return RedirectToAction("ShowDisplay", "Music");
             }
             return View(lstPlaylist);
@@ -135,15 +135,16 @@ namespace KDKmusicWebsite.Controllers
                     data.Playlist_Songs.InsertOnSubmit(songPlaylist);
                     data.SubmitChanges();
                 }
+                TempData["SuccessMessage"] = "Đã tạo danh sách thành công!";
                 return RedirectToAction("ShowPlaylists", "AddPlaylist");// Chuyển hướng đến trang chính của ứng dụng
             }
+            TempData["SuccessMessage"] = "Đã tạo danh sách không thành công!";
             return this.CreatePlaylist();
         }
 
         //Hiển thị ra tên playlist mới (with playlist's name)
         public ActionResult ShowPlaylists()
         {
-            TempData["SuccessMessage"] = "Đã tạo danh sách thành công!";
             // Lấy danh sách các playlist từ cơ sở dữ liệu
             List<Playlist> playlists = data.Playlists.OrderBy(p => p.Playlist_Id).ToList();
 

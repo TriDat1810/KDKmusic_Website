@@ -30,7 +30,9 @@
 </style>
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success">@TempData["SuccessMessage"].ToString()</div>
+    <center>
+        <div class="alert alert-success">@TempData["SuccessMessage"].ToString()</div>
+    </center>
 }
 <main>
     @foreach (var item in Model)
@@ -43,7 +45,7 @@
                 <!-- Card -->
                 <div class="card">
                     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                        <img class="card-img-top" src="@item.sSong_Image"
+                        <img class="card-img-top" src="@Url.Content(item.sSong_Image)"
                              alt="Card image cap">
                         <a href="#!">
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
